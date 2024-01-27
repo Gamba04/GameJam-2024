@@ -16,8 +16,8 @@ MonoBehaviour:
   - name: Player 0
     reference: 0
   - name: Player 1
-    reference: 1
+    reference: 2
   - name: Player 2
     reference: 3
   - name: Player 3
-    reference: 2
+    reference: 1

@@ -57,6 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6672387699147971249}
   - component: {fileID: 789612473564386582}
+  - component: {fileID: 7792850810613025990}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -91,8 +92,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55aa24235f3dd945a498e686662b3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   sprite: {fileID: 4954850475432207662}
-  directionThreshold: 0.3
+--- !u!95 &7792850810613025990
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874901253195061670}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de6bcf6805705ca4da75ed9625953f5f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3104902623042418436
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +305,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  playerID: 0
 --- !u!50 &7143786616893757554
 Rigidbody2D:
   serializedVersion: 4

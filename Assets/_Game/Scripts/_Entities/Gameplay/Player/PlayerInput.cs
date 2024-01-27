@@ -15,7 +15,9 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private AnimationCurve joystickCorrection = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
 
-    private int playerIndex;
+    [Header("Info")]
+    [ReadOnly, SerializeField]
+    private int playerID;
 
     public event Action<float> onMovement;
     public event Action onJump;
@@ -23,9 +25,9 @@ public class PlayerInput : MonoBehaviour
 
     #region Init
 
-    public void Init(int playerIndex)
+    public void Init(int playerID)
     {
-        this.playerIndex = playerIndex;
+        this.playerID = playerID;
     }
 
     #endregion
@@ -83,7 +85,7 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    private string GetInput(string input) => $"Player{playerIndex + 1}_{input}";
+    private string GetInput(string input) => $"Player{playerID}_{input}";
 
     #endregion
 

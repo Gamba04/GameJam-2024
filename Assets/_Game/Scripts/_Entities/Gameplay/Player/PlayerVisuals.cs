@@ -4,6 +4,8 @@ public class PlayerVisuals : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
+    private Animator anim;
+    [SerializeField]
     private SpriteRenderer sprite;
 
     private float direction;

@@ -10,12 +10,12 @@ PrefabInstance:
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.3803922
+      value: 0.3820755
       objectReference: {fileID: 0}
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.81423503
+      value: 0.3820755
       objectReference: {fileID: 0}
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
@@ -45,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 7120309320683811129, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Name
-      value: Fat Boi
+      value: Dynamite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5418e61377faa047a81876ca2bcf1ef, type: 3}

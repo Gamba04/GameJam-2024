@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ using UnityEngine;
 public class CharacterSelectionScrObj : ScriptableObject
 {
     private const string ASSET_NAME = "Character Selection";
+    private const int MAX_PLAYERS = 4;
 
     [SerializeField]
     private List<NamedReference<Character>> players = new List<NamedReference<Character>>();
@@ -19,7 +19,8 @@ public class CharacterSelectionScrObj : ScriptableObject
 
     private void OnValidate()
     {
-        players.ForEach((player, index) => player.SetName($"Player {index}"));
+        players.Resize(MAX_PLAYERS);
+        players.ForEach((player, index) => player.SetName($"Player {index + 1}"));
     }
 
 #endif
