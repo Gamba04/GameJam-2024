@@ -7,6 +7,10 @@ public class GplayManager : MonoBehaviour
     [SerializeField]
     private bool debugs = true;
 
+    [Header("Components")]
+    [SerializeField]
+    private PlayersManager playersManager;
+
     public static bool Debugs => instance != null ? instance.debugs : true;
 
     public static bool GamePaused { get; private set; }
@@ -25,7 +29,7 @@ public class GplayManager : MonoBehaviour
 
     private void Start()
     {
-
+        playersManager.Init();
     }
 
     #endregion
