@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GplayUI : UIManager
 {
+    [Separator]
     [Header("Components")]
-    [Header("GplayUI")]
     [SerializeField]
     private HUDController hudController;
     [SerializeField]
