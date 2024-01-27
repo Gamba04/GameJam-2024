@@ -9,7 +9,7 @@ public enum Character
     FatBoi,
     TNT,
     Dynamite,
-    Retard,
+    PipeGun,
 }
 
 [Serializable]

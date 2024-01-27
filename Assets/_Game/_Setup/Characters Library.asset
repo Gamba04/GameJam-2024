@@ -19,10 +19,13 @@ MonoBehaviour:
       type: 3}
   - name: TNT (TNT)
     displayName: TNT
-    prefab: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef, type: 3}
+    prefab: {fileID: 7950637574553655133, guid: 767b01b3623736d4288235fc2be6629a,
+      type: 3}
   - name: Dynamite (Dynamite)
     displayName: Dynamite
-    prefab: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef, type: 3}
-  - name: Retard (Retard)
-    displayName: Retard
-    prefab: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef, type: 3}
+    prefab: {fileID: 7950637574553655133, guid: 1cdc2e2e0b0ab6e4c9b82e4c1779b8a3,
+      type: 3}
+  - name: Pipe Gun (PipeGun)
+    displayName: Pipe Gun
+    prefab: {fileID: 7950637574553655133, guid: 5c0cdcdce51aa7e4dbd3c3e82945625a,
+      type: 3}
