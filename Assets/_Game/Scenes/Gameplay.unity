@@ -1099,8 +1099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e07ca0e84a4e4e42ac61bcb36996a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef,
-    type: 3}
+  charactersLibrary: {fileID: 11400000, guid: 2f5fa65a1672a4c4c9fdf8fabb222944, type: 2}
+  characterSelection: {fileID: 11400000, guid: 948e5dad7cf48434095812b83cad6335, type: 2}
   playersParent: {fileID: 1961319679}
 --- !u!1 &904019396
 GameObject:

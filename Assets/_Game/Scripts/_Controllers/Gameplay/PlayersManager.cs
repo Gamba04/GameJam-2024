@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayersManager : MonoBehaviour
 {
-    [Header("Components")]
+    [Header("Data")]
     [SerializeField]
-    private Player playerPrefab;
+    private CharactersLibraryScrObj charactersLibrary;
+    [SerializeField]
+    private CharacterSelectionScrObj characterSelection;
+
+    [Header("Components")]
     [SerializeField]
     private Transform playersParent;
 
@@ -19,10 +23,22 @@ public class PlayersManager : MonoBehaviour
 
     private void CreatePlayers()
     {
-        Player player = Instantiate(playerPrefab, playersParent);
-        player.name = playerPrefab.name;
+        characterSelection.Players.ForEach(SpawnCharacter);
+    }
 
-        player.Init(0);
+    private void SpawnCharacter(Character character, int index)
+    {
+        CharacterInfo info = charactersLibrary.GetCharacterInfo(character);
+
+        BuildPlayer(info, index + 1);
+    }
+
+    private void BuildPlayer(CharacterInfo character, int playerID)
+    {
+        Player player = Instantiate(character.prefab, playersParent);
+        player.name = $"Player {playerID}: {character.displayName}";
+
+        player.Init(playerID);
     }
 
     #endregion

@@ -38,6 +38,14 @@ public class CharactersLibraryScrObj : ScriptableObject
     [SerializeField]
     private List<CharacterInfo> characters = new List<CharacterInfo>();
 
+    #region Public Methods
+
+    public CharacterInfo GetCharacterInfo(Character character) => characters[(int)character];
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
     #region Editor
 
 #if UNITY_EDITOR
