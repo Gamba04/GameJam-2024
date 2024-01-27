@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private new Collider2D collider;
     [SerializeField]
     private PlayerInput input;
+    [SerializeField]
+    private PlayerVisuals visuals;
 
     [Header("Settings")]
     [SerializeField]
@@ -103,12 +105,15 @@ public class Player : MonoBehaviour
     private void Move(float input)
     {
         float velocity = rb.velocity.x;
+        float inputAmount = Mathf.Abs(input);
 
         ApplyAcceleration();
         ApplyFriction();
         LimitSpeed();
 
         rb.velocity = new Vector2(velocity, rb.velocity.y);
+
+        SetVisualsDirection();
 
         void ApplyAcceleration()
         {
@@ -117,7 +122,7 @@ public class Player : MonoBehaviour
 
         void ApplyFriction()
         {
-            float inputCoefficient = 1 - Mathf.Abs(input);
+            float inputCoefficient = 1 - inputAmount;
 
             velocity /= 1 + Friction * inputCoefficient * Time.deltaTime;
 
@@ -126,12 +131,19 @@ public class Player : MonoBehaviour
 
         void LimitSpeed()
         {
-            velocity = Math.Min(GetMagnitude(), speed) * GetDirection();
+            velocity = Mathf.Min(GetMagnitude(), speed) * GetDirection();
         }
 
-        float GetMagnitude() => Math.Abs(velocity);
+        float GetMagnitude() => Mathf.Abs(velocity);
 
-        float GetDirection() => Math.Sign(velocity);
+        float GetDirection() => Mathf.Sign(velocity);
+
+        void SetVisualsDirection()
+        {
+            if (inputAmount == 0) return;
+
+            visuals.SetDirection(Mathf.Sign(input), inputAmount);
+        }
     }
 
     private void Jump()
@@ -163,6 +175,7 @@ public class Player : MonoBehaviour
         RestrictNegatives(ref groundFriction);
         RestrictNegatives(ref airFriction);
         RestrictNegatives(ref jump);
+        RestrictNegatives(ref frictionThreshold);
 
         void RestrictNegatives(ref float value) => value = Mathf.Max(value, 0);
     }

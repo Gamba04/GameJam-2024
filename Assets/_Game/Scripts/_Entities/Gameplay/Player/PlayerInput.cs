@@ -35,7 +35,6 @@ public class PlayerInput : MonoBehaviour
         float direction = Math.Sign(input);
 
         onMovement?.Invoke(joystickCorrection.Evaluate(magnitude) * direction);
-        Debug.Log($"{input} -> {joystickCorrection.Evaluate(magnitude) * direction}");
     }
 
     #endregion

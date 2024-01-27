@@ -56,6 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6672387699147971249}
+  - component: {fileID: 789612473564386582}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -78,6 +79,20 @@ Transform:
   m_Father: {fileID: 5775565626194898080}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &789612473564386582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874901253195061670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55aa24235f3dd945a498e686662b3ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 4954850475432207662}
+  directionThreshold: 0.3
 --- !u!1 &3104902623042418436
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +225,7 @@ MonoBehaviour:
   rb: {fileID: 7143786616893757554}
   collider: {fileID: 2033797543520090768}
   input: {fileID: 7191676728884489726}
+  visuals: {fileID: 789612473564386582}
   worldDetection:
     serializedVersion: 2
     m_Bits: 1
@@ -249,7 +265,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2
+      time: 0.4
       value: 0
       inSlope: 0
       outSlope: 0
