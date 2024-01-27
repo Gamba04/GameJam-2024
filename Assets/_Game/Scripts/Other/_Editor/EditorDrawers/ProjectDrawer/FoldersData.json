@@ -1,0 +1,65 @@
+{
+    "foldersData" :
+    [
+        {
+            "path" : "Assets/_Game",
+            "color" : "#606060"
+        },
+        {
+            "path" : "Assets/_Game/_Setup",
+            "color" : "#606060"
+        },
+        {
+            "path" : "Assets/_Game/Audio",
+            "color" : "#E84A4A"
+        },
+        {
+            "path" : "Assets/_Game/Graphics",
+            "color" : "#FFA95F"
+        },
+        {
+            "path" : "Assets/_Game/Graphics/Animations",
+            "color" : "#FF5A70"
+        },
+        {
+            "path" : "Assets/_Game/Graphics/Materials",
+            "color" : "#75AEFF"
+        },
+        {
+            "path" : "Assets/_Game/Graphics/Sprites",
+            "color" : "#75E799"
+        },
+        {
+            "path" : "Assets/_Game/Prefabs",
+            "color" : "#75AEFF"
+        },
+        {
+            "path" : "Assets/_Game/Scenes",
+            "color" : "#75E799"
+        },
+        {
+            "path" : "Assets/_Game/Scripts",
+            "color" : "#C0C0C0"
+        },
+        {
+            "path" : "Assets/_Game/Scripts/_Controllers",
+            "color" : "#CF7663"
+        },
+        {
+            "path" : "Assets/_Game/Scripts/_Entities",
+            "color" : "#FFA95F"
+        },
+        {
+            "path" : "Assets/_Game/Scripts/_Utilities",
+            "color" : "#606060"
+        },
+        {
+            "path" : "Assets/_Game/Scripts/Other",
+            "color" : "#999999"
+        },
+        {
+            "path" : "Assets/_Game/Scripts/Shaders",
+            "color" : "#FF5A70"
+        }
+    ]
+}
