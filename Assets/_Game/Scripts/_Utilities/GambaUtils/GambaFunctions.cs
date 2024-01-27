@@ -136,6 +136,8 @@ public static class GambaFunctions
 
     public static float DBToVolume(float dB) => Mathf.Pow(10, dB / 20);
 
+    public static bool Contains(this LayerMask mask, int layer) => mask == (mask | (1 << layer));
+
     #endregion
 
     // -------------------------------------------------------------------------------------------------------------------

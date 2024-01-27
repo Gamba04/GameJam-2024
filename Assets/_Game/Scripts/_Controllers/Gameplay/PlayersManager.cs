@@ -20,6 +20,7 @@ public class PlayersManager : MonoBehaviour
     private void CreatePlayers()
     {
         Player player = Instantiate(playerPrefab, playersParent);
+        player.name = playerPrefab.name;
 
         player.Init();
     }
