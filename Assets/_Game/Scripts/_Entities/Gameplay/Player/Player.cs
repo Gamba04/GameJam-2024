@@ -28,6 +28,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jump;
 
+    [Space]
+    [SerializeField]
+    [Range(-1, 0)]
+    private float groundedThreshold = -0.6f;
+    [SerializeField]
+    private float frictionThreshold = 0.1f;
+
     [Header("Info")]
     [ReadOnly, SerializeField]
     private bool isGrounded;
@@ -72,9 +79,7 @@ public class Player : MonoBehaviour
 
         contacts.ForEach(ProcessCollision);
 
-        Debug.Log(minHeight);
-
-        isGrounded = minHeight <= -0.7f;
+        isGrounded = minHeight <= groundedThreshold;
 
         void ProcessCollision(ContactPoint2D contact)
         {
@@ -99,21 +104,24 @@ public class Player : MonoBehaviour
     {
         float velocity = rb.velocity.x;
 
-        ApplyFriction();
         ApplyAcceleration();
+        ApplyFriction();
         LimitSpeed();
 
         rb.velocity = new Vector2(velocity, rb.velocity.y);
 
-        void ApplyFriction()
-        {
-            float friction = Friction * Time.deltaTime;
-            velocity -= Math.Min(friction, GetMagnitude()) * GetDirection();
-        }
-
         void ApplyAcceleration()
         {
             velocity += input * acceleration * Time.deltaTime;
+        }
+
+        void ApplyFriction()
+        {
+            float inputCoefficient = 1 - Mathf.Abs(input);
+
+            velocity /= 1 + Friction * inputCoefficient * Time.deltaTime;
+
+            if (GetMagnitude() <= frictionThreshold) velocity = 0;
         }
 
         void LimitSpeed()

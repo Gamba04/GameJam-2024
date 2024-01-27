@@ -215,9 +215,11 @@ MonoBehaviour:
     m_Bits: 1
   speed: 7
   acceleration: 75
-  groundFriction: 30
-  airFriction: 5
+  groundFriction: 20
+  airFriction: 2
   jump: 14
+  groundedThreshold: -0.6
+  frictionThreshold: 0.2
   isGrounded: 0
 --- !u!114 &7191676728884489726
 MonoBehaviour:

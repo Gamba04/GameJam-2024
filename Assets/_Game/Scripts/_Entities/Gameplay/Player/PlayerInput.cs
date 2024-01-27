@@ -15,17 +15,29 @@ public class PlayerInput : MonoBehaviour
     public event Action onJump;
     public event Action onToggle;
 
-    #region Update
+    #region Input
+
+    #region Physics
+
+    private void FixedUpdate()
+    {
+        UpdateMovement();
+    }
+
+    private void UpdateMovement()
+    {
+        onMovement?.Invoke(Input.GetAxisRaw(movementAxis));
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Buttons
 
     private void Update()
     {
-        CheckMovement();
         CheckButtons();
-    }
-
-    private void CheckMovement()
-    {
-        onMovement?.Invoke(Input.GetAxisRaw(movementAxis));
     }
 
     private void CheckButtons()
@@ -33,6 +45,8 @@ public class PlayerInput : MonoBehaviour
         CheckButton(jumpButton, onJump);
         CheckButton(toggleButton, onToggle);
     }
+
+    #endregion
 
     #endregion
 
