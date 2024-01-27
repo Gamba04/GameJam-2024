@@ -45,9 +45,11 @@ public class Player : MonoBehaviour
 
     #region Init
 
-    public void Init()
+    public void Init(int playerIndex)
     {
         InitEvents();
+
+        input.Init(playerIndex);
     }
 
     private void InitEvents()
@@ -100,8 +102,6 @@ public class Player : MonoBehaviour
 
     #region Mechanics
 
-    #region Movement
-
     private void Move(float input)
     {
         float velocity = rb.velocity.x;
@@ -152,8 +152,6 @@ public class Player : MonoBehaviour
 
         rb.velocity = new Vector2(rb.velocity.x, jump);
     }
-
-    #endregion
 
     #endregion
 

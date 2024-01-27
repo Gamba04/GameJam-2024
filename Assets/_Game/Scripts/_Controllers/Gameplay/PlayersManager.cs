@@ -22,7 +22,7 @@ public class PlayersManager : MonoBehaviour
         Player player = Instantiate(playerPrefab, playersParent);
         player.name = playerPrefab.name;
 
-        player.Init();
+        player.Init(0);
     }
 
     #endregion
