@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Inputs")]
     [SerializeField]
     private string movementAxis;
     [SerializeField]
     private string jumpButton;
     [SerializeField]
     private string toggleButton;
+
+    [Header("Settings")]
+    [SerializeField]
+    private AnimationCurve joystickCorrection = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
     
     public event Action<float> onMovement;
     public event Action onJump;
@@ -26,7 +30,12 @@ public class PlayerInput : MonoBehaviour
 
     private void UpdateMovement()
     {
-        onMovement?.Invoke(Input.GetAxisRaw(movementAxis));
+        float input = Input.GetAxisRaw(movementAxis);
+        float magnitude = Math.Abs(input);
+        float direction = Math.Sign(input);
+
+        onMovement?.Invoke(joystickCorrection.Evaluate(magnitude) * direction);
+        Debug.Log($"{input} -> {joystickCorrection.Evaluate(magnitude) * direction}");
     }
 
     #endregion

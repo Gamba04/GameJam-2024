@@ -236,6 +236,39 @@ MonoBehaviour:
   movementAxis: Movement
   jumpButton: Jump
   toggleButton: Toggle
+  joystickCorrection:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.5725557
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.5377235
+      outSlope: 3.5377235
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.038377196
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!50 &7143786616893757554
 Rigidbody2D:
   serializedVersion: 4
