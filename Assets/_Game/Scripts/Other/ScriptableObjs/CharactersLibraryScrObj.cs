@@ -9,7 +9,7 @@ public enum Character
     FatBoi,
     TNT,
     Detonator,
-    PipeGun,
+    PipeBomb,
 }
 
 [Serializable]
@@ -18,6 +18,7 @@ public class CharacterInfo
     [SerializeField, HideInInspector] private string name;
 
     public string displayName;
+    public Sprite winSprite;
     public Player prefab;
 
     public void EditorUpdate(Character character)

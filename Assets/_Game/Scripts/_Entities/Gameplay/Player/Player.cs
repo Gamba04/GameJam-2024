@@ -29,12 +29,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float cigaretteCooldown;
 
-    [Header("Detection")]
-    [SerializeField]
-    private LayerMask worldDetection;
-    [SerializeField]
-    private LayerMask playerDetection;
-
     [Header("Movement")]
     [SerializeField]
     private float speed;
@@ -45,16 +39,27 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float airFriction;
     [SerializeField]
+    private float frictionThreshold = 0.1f;
+    [SerializeField]
     private float jump;
     [SerializeField]
     private float knockback;
+
+    [Header("Collisions")]
+    [SerializeField]
+    private LayerMask worldDetection;
+    [SerializeField]
+    private LayerMask playerDetection;
 
     [Space]
     [SerializeField]
     [Range(-1, 1)]
     private float groundedThreshold = -0.6f;
     [SerializeField]
-    private float frictionThreshold = 0.1f;
+    [Range(-1, 1)]
+    private float wallTargetValue;
+    [SerializeField]
+    private float wallValueRange;
 
     [Header("Info")]
     [ReadOnly, SerializeField]
@@ -338,6 +343,7 @@ public class Player : MonoBehaviour
         GambaFunctions.RestrictNegativeValues(ref jump);
         GambaFunctions.RestrictNegativeValues(ref frictionThreshold);
         GambaFunctions.RestrictNegativeValues(ref knockback);
+        GambaFunctions.RestrictNegativeValues(ref wallValueRange);
     }
 
 #endif
