@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 206536641}
   - component: {fileID: 206536642}
   m_Layer: 0
-  m_Name: Level
+  m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1191,9 +1191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charactersLibrary: {fileID: 11400000, guid: 2f5fa65a1672a4c4c9fdf8fabb222944, type: 2}
   characterSelection: {fileID: 11400000, guid: 948e5dad7cf48434095812b83cad6335, type: 2}
-  levelsLibrary: {fileID: 11400000, guid: 3e008fdfe2a046248a637d15ba192b05, type: 2}
+  stagesLibrary: {fileID: 11400000, guid: 3e008fdfe2a046248a637d15ba192b05, type: 2}
   playersManager: {fileID: 883199461}
-  levelsParent: {fileID: 206536641}
+  stageParent: {fileID: 206536641}
   cigaretteOverlay: {fileID: 392478170}
   minTimer: 20
   maxTimer: 30

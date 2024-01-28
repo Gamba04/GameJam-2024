@@ -10,13 +10,13 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private CharacterSelectionScrObj characterSelection;
     [SerializeField]
-    private LevelsLibraryScrObj levelsLibrary;
+    private StagesLibraryScrObj stagesLibrary;
 
     [Header("Components")]
     [SerializeField]
     private PlayersManager playersManager;
     [SerializeField]
-    private Transform levelsParent;
+    private Transform stageParent;
     [SerializeField]
     private CigaretteOverlay cigaretteOverlay;
 
@@ -56,12 +56,14 @@ public class LevelController : MonoBehaviour
 
     private void BuildLevel(out List<Vector2> spawnPoints)
     {
-        Level levelPrefab = levelsLibrary.GetRandomLevel();
+        Stage stagePrefab = stagesLibrary.GetRandomStage();
 
-        Level level = Instantiate(levelPrefab, levelsParent);
-        level.name = levelPrefab.name;
+        Stage stage = Instantiate(stagePrefab, stageParent);
+        stage.name = stagePrefab.name;
 
-        spawnPoints = level.SpawnPoints;
+        stage.Init();
+
+        spawnPoints = stage.SpawnPoints;
     }
 
     private int GetRandomPlayer() => UnityEngine.Random.Range(0, characterSelection.Players.Count) + 1;

@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2314c9a854a9181448f5927a39bc90e0, type: 3}
-  m_Name: Levels Library
+  m_Name: Stages Library
   m_EditorClassIdentifier: 
-  levels:
+  stages:
   - name: Stage 1
     reference: {fileID: 2056102169152831878, guid: afd41a3ee19726a4bbb8a142b825667f,
+      type: 3}
+  - name: Stage 2
+    reference: {fileID: 2056102169152831878, guid: 2af1f02fbe9e2ec4c81b50850c48be40,
       type: 3}
