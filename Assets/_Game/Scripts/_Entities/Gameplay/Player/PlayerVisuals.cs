@@ -21,6 +21,11 @@ public class PlayerVisuals : MonoBehaviour
         sprite.flipX = direction < 0;
     }
 
+    public void SetBareto(bool value)
+    {
+
+    }
+
     #endregion
 
 }

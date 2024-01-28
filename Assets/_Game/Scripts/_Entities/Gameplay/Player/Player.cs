@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     [Header("Settings")]
     [SerializeField]
     private LayerMask worldDetection;
+    [SerializeField]
+    private LayerMask playerDetection;
 
     [Header("Movement")]
     [SerializeField]
@@ -40,6 +42,10 @@ public class Player : MonoBehaviour
     [Header("Info")]
     [ReadOnly, SerializeField]
     private bool isGrounded;
+    [ReadOnly, SerializeField]
+    private bool hasBareto;
+
+    public event Action onBareto;
 
     private float Friction => isGrounded ? groundFriction : airFriction;
 
@@ -74,7 +80,10 @@ public class Player : MonoBehaviour
         List<ContactPoint2D> contacts = new List<ContactPoint2D>();
         collider.GetContacts(contacts);
 
-        ProcessWorldCollisions(contacts.FindAll(contact => worldDetection.Contains(contact.collider.gameObject.layer)));
+        ProcessWorldCollisions(contacts.FindAll(contact => worldDetection.Contains(GetLayer(contact))));
+        ProcessPlayerCollision(contacts.Find(contact => playerDetection.Contains(GetLayer(contact))));
+
+        int GetLayer(ContactPoint2D contact) => contact.collider.gameObject.layer;
     }
 
     private void ProcessWorldCollisions(List<ContactPoint2D> contacts)
@@ -94,6 +103,16 @@ public class Player : MonoBehaviour
             float heightValue = Vector2.Dot(vector.normalized, Vector2.up);
             minHeight = Math.Min(minHeight, heightValue);
         }
+    }
+
+    private void ProcessPlayerCollision(ContactPoint2D contact)
+    {
+        if (!hasBareto) return;
+
+        Player player = contact.collider.GetComponentInParent<Player>();
+
+        SetBareto(false);
+        player.SetBareto(true);
     }
 
     #endregion
@@ -151,6 +170,24 @@ public class Player : MonoBehaviour
         if (!isGrounded) return;
 
         rb.velocity = new Vector2(rb.velocity.x, jump);
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Public Methods
+
+    public void SetBareto(bool value)
+    {
+        hasBareto = value;
+
+        SetBareto(value);
+
+        if (value)
+        {
+            onBareto?.Invoke();
+        }
     }
 
     #endregion

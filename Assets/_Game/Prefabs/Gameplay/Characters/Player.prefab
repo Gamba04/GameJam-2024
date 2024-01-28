@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6263554896164833057}
   - component: {fileID: 2033797543520090768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 6672387699147971249}
   - component: {fileID: 789612473564386582}
   - component: {fileID: 7792850810613025990}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7080538632601064378}
   - component: {fileID: 4954850475432207662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 936528247059513849}
   - component: {fileID: 7191676728884489726}
   - component: {fileID: 7143786616893757554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ MonoBehaviour:
   visuals: {fileID: 789612473564386582}
   worldDetection:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   speed: 7
   acceleration: 75
   groundFriction: 20

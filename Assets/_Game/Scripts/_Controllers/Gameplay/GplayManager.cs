@@ -9,7 +9,7 @@ public class GplayManager : MonoBehaviour
 
     [Header("Components")]
     [SerializeField]
-    private PlayersManager playersManager;
+    private LevelController levelController;
 
     public static bool Debugs => instance != null ? instance.debugs : true;
 
@@ -29,7 +29,7 @@ public class GplayManager : MonoBehaviour
 
     private void Start()
     {
-        playersManager.Init();
+        levelController.Init();
     }
 
     #endregion

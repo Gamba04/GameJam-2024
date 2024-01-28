@@ -14,6 +14,8 @@ public class PlayersManager : MonoBehaviour
     [SerializeField]
     private Transform playersParent;
 
+    public event Action<int> onPlayerBareto;
+
     #region Init
 
     public void Init()
@@ -39,6 +41,8 @@ public class PlayersManager : MonoBehaviour
         player.name = $"Player {playerID}: {character.displayName}";
 
         player.Init(playerID);
+
+        player.onBareto += () => onPlayerBareto?.Invoke(playerID);
     }
 
     #endregion
