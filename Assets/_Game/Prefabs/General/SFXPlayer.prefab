@@ -119,19 +119,19 @@ MonoBehaviour:
     mixer: {fileID: 0}
   - name: 'TntJump1: TNT_Jump1'
     clip: {fileID: 8300000, guid: afce4318ce5486e4eaf397610ec13457, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'TntJump2: TNT_Jump2'
     clip: {fileID: 8300000, guid: c0ab17c068676b84c981480468c0f85a, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'TntJump3: TNT_Jump3'
     clip: {fileID: 8300000, guid: be85ec0f896f5494685c4a350f70e4d1, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
@@ -143,19 +143,19 @@ MonoBehaviour:
     mixer: {fileID: 0}
   - name: 'FatmanJump1: FatMan_Jump1'
     clip: {fileID: 8300000, guid: d4d82823d287c904199d3ec1509e7610, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'FatmanJump2: PipeBomb_Jump2'
     clip: {fileID: 8300000, guid: 8a31ed9e966267947826ecfb1da857fe, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'FatmanJump3: PipeBomb_Jump3'
     clip: {fileID: 8300000, guid: cb568e6b00ccebf4a860d1f4a6230e01, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
@@ -167,19 +167,19 @@ MonoBehaviour:
     mixer: {fileID: 0}
   - name: 'PipeBombJump1: PipeBomb_Jump1'
     clip: {fileID: 8300000, guid: a1831e26fb45aed4ba80c2703755845d, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'PipeBombJump2: PipeBomb_Jump2'
     clip: {fileID: 8300000, guid: 8a31ed9e966267947826ecfb1da857fe, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'PipeBombJump3: PipeBomb_Jump3'
     clip: {fileID: 8300000, guid: cb568e6b00ccebf4a860d1f4a6230e01, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
@@ -191,19 +191,19 @@ MonoBehaviour:
     mixer: {fileID: 0}
   - name: 'DetonatorJump1: Detonator_Jump1'
     clip: {fileID: 8300000, guid: dbc97c6638dc1d84f8dd04c91233694e, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'DetonatorJump2: Detonator_Jump2'
     clip: {fileID: 8300000, guid: 4cab91670507a374fba3d2be420adc62, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
   - name: 'PDetonatorJump3: Detonator_Jump3'
     clip: {fileID: 8300000, guid: 076e1b90e3a522f498abf06562443df4, type: 3}
-    volume: 1
+    volume: 0.6
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
@@ -219,9 +219,9 @@ MonoBehaviour:
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}
-  - name: 'Explosion1: Explosion'
+  - name: 'Explosion: Explosion'
     clip: {fileID: 8300000, guid: 8684ed8f8ec844040bf978d313609346, type: 3}
-    volume: 1
+    volume: 0.8
     spatialBlend: 0
     range: 5
     mixer: {fileID: 0}

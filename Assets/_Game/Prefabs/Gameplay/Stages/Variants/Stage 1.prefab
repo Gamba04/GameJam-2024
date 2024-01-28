@@ -3662,6 +3662,11 @@ PrefabInstance:
       propertyPath: m_TargetCameraAlpha
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8280707624262714451, guid: 1d69c121b094cb849a868cc36626b924,
+        type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d69c121b094cb849a868cc36626b924, type: 3}
 --- !u!4 &1834855968748521285 stripped

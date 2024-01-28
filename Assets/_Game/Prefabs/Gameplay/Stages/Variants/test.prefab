@@ -3986,7 +3986,7 @@ PrefabInstance:
     - target: {fileID: 2638460117446729087, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: m_Name
-      value: Stage 2
+      value: test
       objectReference: {fileID: 0}
     - target: {fileID: 3569601974255950693, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
@@ -4119,6 +4119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PlaybackSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280707624262714451, guid: 1d69c121b094cb849a868cc36626b924,
+        type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.data[0]
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d69c121b094cb849a868cc36626b924, type: 3}
