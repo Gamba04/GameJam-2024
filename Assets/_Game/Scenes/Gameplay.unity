@@ -412,7 +412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106937065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.37, y: -1.88, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 1378594792}
@@ -1797,21 +1797,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
         type: 3}
-      propertyPath: sfxClips.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
-        type: 3}
-      propertyPath: sfxClips.Array.data[0].name
-      value: 'Test: No clip'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
-        type: 3}
-      propertyPath: sfxClips.Array.data[0].range
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
-        type: 3}
       propertyPath: sfxLoopAudioSources.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -1819,11 +1804,6 @@ PrefabInstance:
         type: 3}
       propertyPath: sfxLoopAudioSources.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
-        type: 3}
-      propertyPath: sfxClips.Array.data[0].spatialBlend
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babe09b129ab64540bde629b8f3b1b2e, type: 3}
