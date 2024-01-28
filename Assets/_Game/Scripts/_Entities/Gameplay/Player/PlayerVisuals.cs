@@ -16,7 +16,7 @@ public class PlayerVisuals : MonoBehaviour
 
     #region Public Methods
 
-    public void SetDirection(float targetDirection, float inputAmount)
+    public void SetDirection(float targetDirection, float inputAmount = 1)
     {
         direction = Mathf.Lerp(direction, targetDirection, inputAmount == 1 ? 1 : Time.deltaTime * directionSpeed * inputAmount);
 
@@ -38,6 +38,11 @@ public class PlayerVisuals : MonoBehaviour
     public void SetGrounded(bool value)
     {
         anim.SetBool("Grounded", value);
+    }
+
+    public void SetWallRiding(bool value)
+    {
+        anim.SetBool("WallRiding", value);
     }
 
     #endregion
