@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     [Range(0, 0.5f)]
     private float wallValueRange;
+    [SerializeField]
+    private float groundedDropTimeout;
+    [SerializeField]
+    private float wallRideDropTimeout;
 
     [Header("Info")]
     [ReadOnly, SerializeField]
@@ -80,7 +84,12 @@ public class Player : MonoBehaviour
 
     private int playerID;
 
+    private bool hasJumpCooldown;
+
     private Vector2 levelArea;
+
+    private Timer.CancelRequest cancelGrounded = new Timer.CancelRequest();
+    private Timer.CancelRequest cancelWallDrop = new Timer.CancelRequest();
 
     public event Action onCigarette;
 
@@ -145,7 +154,7 @@ public class Player : MonoBehaviour
         contacts.ForEach(ProcessCollisionValues);
 
         SetGrounded(minY <= groundedThreshold);
-        SetWallRiding(CheckWallRiding(out wallDirection));
+        SetWallRiding(CheckWallRiding(out int direction), direction);
 
         void ProcessCollisionValues(ContactPoint2D contact)
         {
@@ -254,6 +263,11 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
+        if (hasJumpCooldown) return;
+
+        hasJumpCooldown = true;
+        Timer.CallOnDelay(OnFinishCooldown, Mathf.Max(groundedDropTimeout, wallRideDropTimeout));
+
         Action jump = state switch
         {
             State.Normal => NormalJump,
@@ -261,6 +275,11 @@ public class Player : MonoBehaviour
         };
 
         jump?.Invoke();
+
+        void OnFinishCooldown()
+        {
+            hasJumpCooldown = false;
+        }
     }
 
     #region Normal
@@ -377,17 +396,48 @@ public class Player : MonoBehaviour
     {
         if (value != isGrounded)
         {
-            isGrounded = value;
             visuals.SetGrounded(value);
+
+            if (value)
+            {
+                ApplyChange();
+
+                cancelGrounded.Cancel();
+            }
+            else
+            {
+                Timer.CallOnDelay(ApplyChange, groundedDropTimeout, cancelGrounded);
+            }
+        }
+
+        void ApplyChange()
+        {
+            isGrounded = value;
         }
     }
 
-    private void SetWallRiding(bool value)
+    private void SetWallRiding(bool value, int direction)
     {
         if (value != isWallRiding)
         {
-            isWallRiding = value;
             visuals.SetWallRiding(value);
+
+            if (value)
+            {
+                ApplyChange();
+
+                cancelWallDrop.Cancel();
+            }
+            else
+            {
+                Timer.CallOnDelay(ApplyChange, wallRideDropTimeout, cancelWallDrop);
+            }
+        }
+
+        void ApplyChange()
+        {
+            isWallRiding = value;
+            wallDirection = direction;
         }
     }
 
@@ -439,6 +489,8 @@ public class Player : MonoBehaviour
         GambaFunctions.RestrictNegativeValues(ref frictionThreshold);
         GambaFunctions.RestrictNegativeValues(ref knockback);
         GambaFunctions.RestrictNegativeValues(ref wallFriction);
+        GambaFunctions.RestrictNegativeValues(ref groundedDropTimeout);
+        GambaFunctions.RestrictNegativeValues(ref wallRideDropTimeout);
     }
 
 #endif

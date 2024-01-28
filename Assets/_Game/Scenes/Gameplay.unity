@@ -627,8 +627,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420029}
   - component: {fileID: 519420034}
   m_Layer: 0
@@ -646,68 +644,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a5aab40d3243c24a8149024bba766fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateInEditor: 1
-  aspectRatios:
-  - name: 4:3
-    aspect: {x: 4, y: 3}
-    size: 7.8
-    ratio: 1.3333334
-  - name: 16:9
-    aspect: {x: 16, y: 9}
-    size: 7.8
-    ratio: 1.7777778
-  - name: 21:9
-    aspect: {x: 21, y: 9}
-    size: 7.8
-    ratio: 2.3333333
-  currentRatio: 1.7780548
-  tangents: 0
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1.3333334
-      value: 7.8
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1.7777778
-      value: 7.8
-      inSlope: -0
-      outSlope: 0
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 2.3333333
-      value: 7.8
-      inSlope: -0
-      outSlope: 0
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  camera: {fileID: 519420031}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -735,7 +671,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.8
+  orthographic size: 6.55
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -765,23 +701,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a517d92a1464e049a06a7b5b8041122, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 10.1
-  baseAspect: {x: 16, y: 9}
-  currentAspect: {x: 16, y: 9}
-  visualizeAspect: 0
-  color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,7 +1069,7 @@ MonoBehaviour:
   playersManager: {fileID: 883199461}
   minTimer: 20
   maxTimer: 40
-  levelArea: {x: 9, y: 5}
+  levelArea: {x: 12, y: 7}
   currentPlayer: 0
   timer: 0
 --- !u!1 &1099458895
