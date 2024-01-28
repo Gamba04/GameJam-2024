@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
-    private new Collider2D collider;
+    private new CircleCollider2D collider;
     [SerializeField]
     private PlayerInput input;
     [SerializeField]
@@ -67,6 +67,12 @@ public class Player : MonoBehaviour
     private PhysicsMaterial2D normalMaterial;
     [SerializeField]
     private PhysicsMaterial2D ballMaterial;
+
+    [Space]
+    [SerializeField]
+    private float normalColliderSize;
+    [SerializeField]
+    private float ballColliderSize;
 
     [Space]
     [SerializeField]
@@ -321,6 +327,7 @@ public class Player : MonoBehaviour
 
         visuals.SetBall(value);
 
+        collider.radius = value ? ballColliderSize : normalColliderSize;
         collider.sharedMaterial = value ? ballMaterial : normalMaterial;
         rb.constraints = value ? RigidbodyConstraints2D.None : RigidbodyConstraints2D.FreezeRotation;
 
@@ -585,6 +592,8 @@ public class Player : MonoBehaviour
         GambaFunctions.RestrictNegativeValues(ref ballAcceleration);
         GambaFunctions.RestrictNegativeValues(ref ballSpeed);
         GambaFunctions.RestrictNegativeValues(ref ballJump);
+        GambaFunctions.RestrictNegativeValues(ref normalColliderSize);
+        GambaFunctions.RestrictNegativeValues(ref ballColliderSize);
     }
 
 #endif
