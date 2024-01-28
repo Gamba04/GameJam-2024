@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     [Header("Settings")]
     [SerializeField]
     private LayerMask worldDetection;
+    [SerializeField]
+    private LayerMask playerDetection;
 
     [Header("Movement")]
     [SerializeField]
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
     private float airFriction;
     [SerializeField]
     private float jump;
+    [SerializeField]
+    private float knockback;
 
     [Space]
     [SerializeField]
@@ -40,6 +44,10 @@ public class Player : MonoBehaviour
     [Header("Info")]
     [ReadOnly, SerializeField]
     private bool isGrounded;
+    [ReadOnly, SerializeField]
+    private bool hasCigarette;
+
+    public event Action onCigarette;
 
     private float Friction => isGrounded ? groundFriction : airFriction;
 
@@ -74,7 +82,10 @@ public class Player : MonoBehaviour
         List<ContactPoint2D> contacts = new List<ContactPoint2D>();
         collider.GetContacts(contacts);
 
-        ProcessWorldCollisions(contacts.FindAll(contact => worldDetection.Contains(contact.collider.gameObject.layer)));
+        ProcessWorldCollisions(contacts.FindAll(contact => worldDetection.Contains(GetLayer(contact))));
+        ProcessPlayerCollision(contacts.Find(contact => playerDetection.Contains(GetLayer(contact))));
+
+        int GetLayer(ContactPoint2D contact) => contact.collider.gameObject.layer;
     }
 
     private void ProcessWorldCollisions(List<ContactPoint2D> contacts)
@@ -87,7 +98,7 @@ public class Player : MonoBehaviour
 
         void ProcessCollision(ContactPoint2D contact)
         {
-            Vector2 vector = contact.point - (Vector2)collider.transform.position;
+            Vector2 vector = GetCollisionVector(contact);
 
             UnityEngine.Debug.DrawRay(collider.transform.position, vector, Color.red);
 
@@ -95,6 +106,30 @@ public class Player : MonoBehaviour
             minHeight = Math.Min(minHeight, heightValue);
         }
     }
+
+    private void ProcessPlayerCollision(ContactPoint2D contact)
+    {
+        if (!hasCigarette) return;
+
+        if (contact.collider == null) return;
+
+        Player player = contact.collider.GetComponentInParent<Player>();
+
+        if (player == null) return;
+
+        Vector2 direction = GetCollisionVector(contact).normalized;
+
+        PassCigarette(player);
+
+        void PassCigarette(Player player)
+        {
+            SetCigarette(false);
+            player.SetCigarette(true);
+            player.Knockback(direction);
+        }
+    }
+
+    private Vector2 GetCollisionVector(ContactPoint2D contact) => contact.point - (Vector2)collider.transform.position;
 
     #endregion
 
@@ -157,6 +192,27 @@ public class Player : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
+    #region Public Methods
+
+    public void SetCigarette(bool value)
+    {
+        hasCigarette = value;
+
+        if (value)
+        {
+            onCigarette?.Invoke();
+        }
+    }
+
+    public void Knockback(Vector2 direction)
+    {
+        rb.velocity += direction * knockback;
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
     #region Editor
 
 #if UNITY_EDITOR
@@ -174,6 +230,7 @@ public class Player : MonoBehaviour
         RestrictNegatives(ref airFriction);
         RestrictNegatives(ref jump);
         RestrictNegatives(ref frictionThreshold);
+        RestrictNegatives(ref knockback);
 
         void RestrictNegatives(ref float value) => value = Mathf.Max(value, 0);
     }

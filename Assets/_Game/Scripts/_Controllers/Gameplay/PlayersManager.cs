@@ -14,6 +14,8 @@ public class PlayersManager : MonoBehaviour
     [SerializeField]
     private Transform playersParent;
 
+    public event Action<int> onPlayerCigarette;
+
     #region Init
 
     public void Init()
@@ -39,6 +41,9 @@ public class PlayersManager : MonoBehaviour
         player.name = $"Player {playerID}: {character.displayName}";
 
         player.Init(playerID);
+        if (playerID == 1) player.SetCigarette(true);
+
+        player.onCigarette += () => onPlayerCigarette?.Invoke(playerID);
     }
 
     #endregion
