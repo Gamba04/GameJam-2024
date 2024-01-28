@@ -1373,6 +1373,7 @@ MonoBehaviour:
   playersManager: {fileID: 883199461}
   minTimer: 20
   maxTimer: 40
+  levelArea: {x: 9, y: 5}
   currentPlayer: 0
   timer: 0
 --- !u!1 &1099458895

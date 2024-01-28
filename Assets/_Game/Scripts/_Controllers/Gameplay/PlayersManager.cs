@@ -11,14 +11,18 @@ public class PlayersManager : MonoBehaviour
     private CharactersLibraryScrObj charactersLibrary;
     private CharacterSelectionScrObj characterSelection;
 
+    private Vector2 levelArea;
+
     private readonly List<Player> players = new List<Player>();
 
     public event Action<int> onPlayerCigarette;
 
     #region Init
 
-    public void Init(CharactersLibraryScrObj charactersLibrary, CharacterSelectionScrObj characterSelection)
+    public void Init(CharactersLibraryScrObj charactersLibrary, CharacterSelectionScrObj characterSelection, Vector2 levelArea)
     {
+        this.levelArea = levelArea;
+
         this.charactersLibrary = charactersLibrary;
         this.characterSelection = characterSelection;
 
@@ -42,7 +46,7 @@ public class PlayersManager : MonoBehaviour
         Player player = Instantiate(character.prefab, playersParent);
         player.name = $"Player {playerID}: {character.displayName}";
 
-        player.Init(playerID);
+        player.Init(playerID, levelArea);
 
         player.onCigarette += () => onPlayerCigarette?.Invoke(playerID);
 

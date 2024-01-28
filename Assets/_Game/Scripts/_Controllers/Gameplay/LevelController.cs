@@ -20,6 +20,10 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private float maxTimer;
 
+    [Space]
+    [SerializeField]
+    private Vector2 levelArea;
+
     [Header("Info")]
     [ReadOnly, SerializeField]
     private int currentPlayer;
@@ -34,7 +38,7 @@ public class LevelController : MonoBehaviour
     {
         InitEvents();
 
-        playersManager.Init(charactersLibrary, characterSelection);
+        playersManager.Init(charactersLibrary, characterSelection, levelArea);
 
         StartLevel();
     }
@@ -123,6 +127,21 @@ public class LevelController : MonoBehaviour
 
 #if UNITY_EDITOR
 
+    #region Gizmos
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(transform.position, levelArea * 2);
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region OnValidate
+
     private void OnValidate()
     {
         UpdateEditorFields();
@@ -133,6 +152,8 @@ public class LevelController : MonoBehaviour
         GambaFunctions.RestrictNegativeValues(ref minTimer);
         GambaFunctions.RestrictNegativeValues(ref maxTimer);
     }
+
+    #endregion
 
 #endif
 

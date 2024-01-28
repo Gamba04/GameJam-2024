@@ -80,6 +80,8 @@ public class Player : MonoBehaviour
 
     private int playerID;
 
+    private Vector2 levelArea;
+
     public event Action onCigarette;
 
     private float Friction => isGrounded ? groundFriction : airFriction;
@@ -88,9 +90,10 @@ public class Player : MonoBehaviour
 
     #region Init
 
-    public void Init(int playerID)
+    public void Init(int playerID, Vector2 levelArea)
     {
         this.playerID = playerID;
+        this.levelArea = levelArea;
 
         InitEvents();
 
@@ -111,13 +114,16 @@ public class Player : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
-    #region Collisions
+    #region FixedUpdate
 
     private void FixedUpdate()
     {
         UpdateCollisions();
         UpdateWallRide();
+        UpdateMirror();
     }
+
+    #region Collisions
 
     private void UpdateCollisions()
     {
@@ -195,16 +201,39 @@ public class Player : MonoBehaviour
         }
     }
 
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Other
+
     private void UpdateWallRide()
     {
         if (!isWallRiding) return;
 
         float velocity = rb.velocity.y;
 
-        velocity /= 1 + wallFriction * Time.deltaTime;
+        if (velocity < 0)
+        {
+            velocity /= 1 + wallFriction * Time.deltaTime;
+        }
 
         rb.velocity = new Vector2(rb.velocity.x, velocity);
     }
+
+    private void UpdateMirror()
+    {
+        Vector2 position = transform.position;
+
+        if (position.x >  levelArea.x) position.x = -levelArea.x;
+        if (position.x < -levelArea.x) position.x =  levelArea.x;
+        if (position.y >  levelArea.y) position.y = -levelArea.y;
+        if (position.y < -levelArea.y) position.y =  levelArea.y;
+
+        transform.position = position;
+    }
+
+    #endregion
 
     #endregion
 
