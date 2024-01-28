@@ -199,6 +199,7 @@ MonoBehaviour:
   anim: {fileID: 6868372894528948755}
   text: {fileID: 2816740920334187375}
   player: {fileID: 8559162232850221449}
+  sfxDelay: 1
 --- !u!95 &6868372894528948755
 Animator:
   serializedVersion: 3
