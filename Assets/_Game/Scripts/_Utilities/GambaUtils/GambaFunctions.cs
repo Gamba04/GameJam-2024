@@ -484,58 +484,6 @@ public static class GambaFunctions
 
     // -------------------------------------------------------------------------------------------------------------------
 
-    #region Reflection
-
-    public static T GetValueOfType<T>(this SerializedProperty property)
-    {
-        if (property == null) throw new ArgumentNullException(nameof(property));
-
-        string path = property.propertyPath.Replace("Array.data", "").Replace("]", "");
-        string[] names = path.Split('.');
-
-        object currentObject = property.serializedObject.targetObject;
-
-        foreach (string name in names)
-        {
-            if (name[0] == '[') // Array
-            {
-                int index = int.Parse(name.Substring(1));
-
-                List<object> list = new List<object>(currentObject as IEnumerable<object>);
-
-                currentObject = list[index];
-            }
-            else // Object
-            {
-                FieldInfo field = GetField(currentObject.GetType(), name);
-
-                if (field == null) return default;
-
-                currentObject = field.GetValue(currentObject);
-            }
-        }
-
-        return (T)currentObject;
-    }
-
-    private static FieldInfo GetField(Type type, string name)
-    {
-        FieldInfo field;
-
-        do
-        {
-            field = type.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            type = type.BaseType;
-        }
-        while (field == null && type != null);
-
-        return field;
-    }
-
-    #endregion
-
-    // -------------------------------------------------------------------------------------------------------------------
-
     #region Other
 
     public static void Reset(this Transform transform)
@@ -665,6 +613,58 @@ public static class GambaFunctions
         {
             Handles.DrawLine(center + scale.MultipliedBy(coordsA), center + scale.MultipliedBy(coordsB), thickness);
         }
+    }
+
+    #endregion
+
+    // -------------------------------------------------------------------------------------------------------------------
+
+    #region Reflection
+
+    public static T GetValueOfType<T>(this SerializedProperty property)
+    {
+        if (property == null) throw new ArgumentNullException(nameof(property));
+
+        string path = property.propertyPath.Replace("Array.data", "").Replace("]", "");
+        string[] names = path.Split('.');
+
+        object currentObject = property.serializedObject.targetObject;
+
+        foreach (string name in names)
+        {
+            if (name[0] == '[') // Array
+            {
+                int index = int.Parse(name.Substring(1));
+
+                List<object> list = new List<object>(currentObject as IEnumerable<object>);
+
+                currentObject = list[index];
+            }
+            else // Object
+            {
+                FieldInfo field = GetField(currentObject.GetType(), name);
+
+                if (field == null) return default;
+
+                currentObject = field.GetValue(currentObject);
+            }
+        }
+
+        return (T)currentObject;
+    }
+
+    private static FieldInfo GetField(Type type, string name)
+    {
+        FieldInfo field;
+
+        do
+        {
+            field = type.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            type = type.BaseType;
+        }
+        while (field == null && type != null);
+
+        return field;
     }
 
     #endregion

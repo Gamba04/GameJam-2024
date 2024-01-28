@@ -337,7 +337,9 @@ public class SFXPlayer : MonoBehaviour
                     }
                     else
                     {
+#if UNITY_EDITOR
                         GambaFunctions.DestroyInEditor(existingAudioSources[i].gameObject);
+#endif
                     }
                     existingAudioSources.RemoveAt(i);
                 }

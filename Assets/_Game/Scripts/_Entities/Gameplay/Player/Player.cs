@@ -72,7 +72,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float normalColliderSize;
     [SerializeField]
+    private float normalColliderOffset;
+    [SerializeField]
     private float ballColliderSize;
+    [SerializeField]
+    private float ballColliderOffset;
 
     [Space]
     [SerializeField]
@@ -328,6 +332,7 @@ public class Player : MonoBehaviour
         visuals.SetBall(value);
 
         collider.radius = value ? ballColliderSize : normalColliderSize;
+        collider.offset = Vector2.up * (value ? ballColliderOffset : normalColliderOffset);
         collider.sharedMaterial = value ? ballMaterial : normalMaterial;
         rb.constraints = value ? RigidbodyConstraints2D.None : RigidbodyConstraints2D.FreezeRotation;
 

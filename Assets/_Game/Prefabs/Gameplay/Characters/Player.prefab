@@ -394,7 +394,9 @@ MonoBehaviour:
   normalMaterial: {fileID: 6200000, guid: 1fba790c4536c3f4ea625ea707307696, type: 2}
   ballMaterial: {fileID: 6200000, guid: 945d8d5db6373864fb08e3cbeab83a48, type: 2}
   normalColliderSize: 0.5
+  normalColliderOffset: 0
   ballColliderSize: 0.4
+  ballColliderOffset: -0.25
   groundedThreshold: -0.6
   wallTargetValue: 0
   wallValueRange: 0.2
