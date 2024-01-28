@@ -6,9 +6,9 @@ public class PlayerVisuals : MonoBehaviour
     [SerializeField]
     private Animator anim;
     [SerializeField]
-    private SpriteRenderer sprite;
+    private Transform graphics;
     [SerializeField]
-    private SpriteRenderer cigarette;
+    private GameObject cigarette;
 
     private float direction;
 
@@ -20,12 +20,14 @@ public class PlayerVisuals : MonoBehaviour
     {
         direction = Mathf.Lerp(direction, targetDirection, inputAmount == 1 ? 1 : Time.deltaTime * directionSpeed * inputAmount);
 
-        sprite.flipX = direction < 0;
+        float x = direction > 0 ? 1 : -1;
+
+        graphics.localScale = new Vector3(x, 1, 1);
     }
 
     public void SetCigarette(bool value)
     {
-        cigarette.enabled = value;
+        cigarette.SetActive(value);
     }
 
     public void SetMoving(bool value)
