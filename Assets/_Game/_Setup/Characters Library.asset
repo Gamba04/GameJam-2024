@@ -21,8 +21,8 @@ MonoBehaviour:
     displayName: TNT
     prefab: {fileID: 7950637574553655133, guid: 767b01b3623736d4288235fc2be6629a,
       type: 3}
-  - name: Dynamite (Dynamite)
-    displayName: Dynamite
+  - name: Detonator (Detonator)
+    displayName: Detonator
     prefab: {fileID: 7950637574553655133, guid: 1cdc2e2e0b0ab6e4c9b82e4c1779b8a3,
       type: 3}
   - name: Pipe Gun (PipeGun)

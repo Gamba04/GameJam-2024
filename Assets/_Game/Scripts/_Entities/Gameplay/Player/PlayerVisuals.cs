@@ -28,6 +28,16 @@ public class PlayerVisuals : MonoBehaviour
         cigarette.enabled = value;
     }
 
+    public void SetMoving(bool value)
+    {
+        anim.SetBool("Moving", value);
+    }
+
+    public void SetGrounded(bool value)
+    {
+        anim.SetBool("Grounded", value);
+    }
+
     #endregion
 
 }

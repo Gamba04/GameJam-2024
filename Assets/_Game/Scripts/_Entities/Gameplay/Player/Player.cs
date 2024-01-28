@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 
         contacts.ForEach(ProcessCollision);
 
-        isGrounded = minHeight <= groundedThreshold;
+        SetGrounded(minHeight <= groundedThreshold);
 
         void ProcessCollision(ContactPoint2D contact)
         {
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
 
         rb.velocity = new Vector2(velocity, rb.velocity.y);
 
-        SetVisualsDirection();
+        SetVisuals();
 
         void ApplyAcceleration()
         {
@@ -182,11 +182,17 @@ public class Player : MonoBehaviour
 
         float GetDirection() => Mathf.Sign(velocity);
 
-        void SetVisualsDirection()
+        void SetVisuals()
         {
-            if (inputAmount == 0) return;
-
-            visuals.SetDirection(Mathf.Sign(input), inputAmount);
+            if (inputAmount > 0)
+            {
+                visuals.SetMoving(true);
+                visuals.SetDirection(Mathf.Sign(input), inputAmount);
+            }
+            else
+            {
+                visuals.SetMoving(false);
+            }
         }
     }
 
@@ -225,6 +231,13 @@ public class Player : MonoBehaviour
     // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Other
+
+    private void SetGrounded(bool value)
+    {
+        isGrounded = value;
+
+        visuals.SetGrounded(value);
+    }
 
     private void OnCigarette()
     {

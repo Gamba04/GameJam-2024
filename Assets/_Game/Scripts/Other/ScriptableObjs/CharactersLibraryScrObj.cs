@@ -8,7 +8,7 @@ public enum Character
 {
     FatBoi,
     TNT,
-    Dynamite,
+    Detonator,
     PipeGun,
 }
 
