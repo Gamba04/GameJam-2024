@@ -10,17 +10,17 @@ PrefabInstance:
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.48794055
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.65771556
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.8018868
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5775565626194898080, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
@@ -47,5 +47,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TNT
       objectReference: {fileID: 0}
+    - target: {fileID: 7792850810613025990, guid: f5418e61377faa047a81876ca2bcf1ef,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: d41c6e4228e536746b2980e587117eb6,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5418e61377faa047a81876ca2bcf1ef, type: 3}
