@@ -6,6 +6,8 @@ public class CigaretteOverlay : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Transform overlay;
+    [SerializeField]
+    private Animator boxAnim;
 
     [Header("Settings")]
     [SerializeField]
@@ -59,8 +61,13 @@ public class CigaretteOverlay : MonoBehaviour
 
     private void StartTransition()
     {
-        overlayTransition.SetValues(overlay.position, overlay.localScale.x);
-        overlayTransition.StartTransition(startingPlayer.transform.position, targetSize, OnFinishSequence);
+        boxAnim.SetTrigger("Out");
+
+        Timer.CallOnDelay(() =>
+        {
+            overlayTransition.SetValues(overlay.position, overlay.localScale.x);
+            overlayTransition.StartTransition(startingPlayer.transform.position, targetSize, OnFinishSequence);
+        }, delay);
     }
 
     private void OnFinishSequence()

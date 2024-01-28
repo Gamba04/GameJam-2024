@@ -19,3 +19,6 @@ MonoBehaviour:
   - name: Stage 2
     reference: {fileID: 2056102169152831878, guid: 2af1f02fbe9e2ec4c81b50850c48be40,
       type: 3}
+  - name: Stage 3
+    reference: {fileID: 2056102169152831878, guid: c13df7bacf1c6394fa80cba2d933acfa,
+      type: 3}

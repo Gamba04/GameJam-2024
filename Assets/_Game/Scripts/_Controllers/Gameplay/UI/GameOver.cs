@@ -11,6 +11,10 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private Image player;
 
+    [Header("Settings")]
+    [SerializeField]
+    private float sfxDelay;
+
     private bool restartAvailable;
 
     #region Update
@@ -43,7 +47,8 @@ public class GameOver : MonoBehaviour
 
         text.text = $"PLAYER {playerID} WINS!!!!";
         player.sprite = info.winSprite;
-        SFXPlayer.PlaySFX(info.sfx);
+
+        Timer.CallOnDelay(() => SFXPlayer.PlaySFX(info.sfx), sfxDelay);
     }
 
     public void EnableRestart()
