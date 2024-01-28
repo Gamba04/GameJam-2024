@@ -41,7 +41,7 @@ public class PlayersManager : MonoBehaviour
         player.name = $"Player {playerID}: {character.displayName}";
 
         player.Init(playerID);
-        if (playerID == 1) player.SetCigarette(true);
+        player.SetCigarette(playerID == 1);
 
         player.onCigarette += () => onPlayerCigarette?.Invoke(playerID);
     }

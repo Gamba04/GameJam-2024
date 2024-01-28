@@ -7,6 +7,8 @@ public class PlayerVisuals : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private SpriteRenderer sprite;
+    [SerializeField]
+    private SpriteRenderer cigarette;
 
     private float direction;
 
@@ -21,9 +23,9 @@ public class PlayerVisuals : MonoBehaviour
         sprite.flipX = direction < 0;
     }
 
-    public void SetBareto(bool value)
+    public void SetCigarette(bool value)
     {
-
+        cigarette.enabled = value;
     }
 
     #endregion

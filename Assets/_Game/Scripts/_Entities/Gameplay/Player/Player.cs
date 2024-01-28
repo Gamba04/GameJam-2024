@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField]
+    private float cigaretteCooldown;
+
+    [Header("Detection")]
+    [SerializeField]
     private LayerMask worldDetection;
     [SerializeField]
     private LayerMask playerDetection;
@@ -46,6 +50,8 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     [ReadOnly, SerializeField]
     private bool hasCigarette;
+    [ReadOnly, SerializeField]
+    private bool hasCigaretteCooldown;
 
     public event Action onCigarette;
 
@@ -109,8 +115,6 @@ public class Player : MonoBehaviour
 
     private void ProcessPlayerCollision(ContactPoint2D contact)
     {
-        if (!hasCigarette) return;
-
         if (contact.collider == null) return;
 
         Player player = contact.collider.GetComponentInParent<Player>();
@@ -119,13 +123,23 @@ public class Player : MonoBehaviour
 
         Vector2 direction = GetCollisionVector(contact).normalized;
 
-        PassCigarette(player);
+        ApplyKnockback();
 
-        void PassCigarette(Player player)
+        if (hasCigarette && !hasCigaretteCooldown)
+        {
+            PassCigarette();
+        }
+
+        void ApplyKnockback()
+        {
+            Knockback(-direction);
+            player.Knockback(direction);
+        }
+
+        void PassCigarette()
         {
             SetCigarette(false);
             player.SetCigarette(true);
-            player.Knockback(direction);
         }
     }
 
@@ -198,15 +212,42 @@ public class Player : MonoBehaviour
     {
         hasCigarette = value;
 
+        visuals.SetCigarette(value);
+
         if (value)
         {
-            onCigarette?.Invoke();
+            OnCigarette();
         }
     }
 
     public void Knockback(Vector2 direction)
     {
-        rb.velocity += direction * knockback;
+        rb.velocity = direction * knockback;
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Other
+
+    private void OnCigarette()
+    {
+        SetCigarretteCooldown();
+
+        onCigarette?.Invoke();
+    }
+
+    private void SetCigarretteCooldown()
+    {
+        hasCigaretteCooldown = true;
+
+        Timer.CallOnDelay(OnFinishCooldown, cigaretteCooldown);
+
+        void OnFinishCooldown()
+        {
+            hasCigaretteCooldown = false;
+        }
     }
 
     #endregion
@@ -224,6 +265,7 @@ public class Player : MonoBehaviour
 
     private void UpdateEditorFields()
     {
+        RestrictNegatives(ref cigaretteCooldown);
         RestrictNegatives(ref speed);
         RestrictNegatives(ref acceleration);
         RestrictNegatives(ref groundFriction);
