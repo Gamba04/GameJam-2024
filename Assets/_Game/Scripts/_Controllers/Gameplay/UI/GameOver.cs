@@ -5,13 +5,17 @@ public class GameOver : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
+    private Animator anim;
+    [SerializeField]
     private Text text;
     [SerializeField]
-    private Animator anim;
+    private Image player;
 
-    public void Play(int playerID)
+    public void Play(int playerID, Sprite sprite)
     {
-        text.text = $"PLAYER {playerID} WINS!!!!";
         anim.SetTrigger("Play");
+
+        text.text = $"PLAYER {playerID} WINS!!!!";
+        player.sprite = sprite;
     }
 }

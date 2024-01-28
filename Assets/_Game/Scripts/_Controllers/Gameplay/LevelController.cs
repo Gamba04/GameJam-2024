@@ -104,7 +104,15 @@ public class LevelController : MonoBehaviour
         gameOver = true;
 
         playersManager.GameOver();
-        GplayUI.GameOver(currentPlayer);
+
+        PlayUI();
+
+        void PlayUI()
+        {
+            Character character = characterSelection.GetCharacter(currentPlayer);
+            Sprite playerSprite = charactersLibrary.GetCharacterInfo(character).winSprite;
+            GplayUI.GameOver(currentPlayer, playerSprite);
+        }
     }
 
     #endregion

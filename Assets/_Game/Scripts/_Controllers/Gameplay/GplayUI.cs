@@ -40,9 +40,9 @@ public class GplayUI : UIManager
         Instance.pauseController.SetVisible(value);
     }
 
-    public static void GameOver(int playerID)
+    public static void GameOver(int playerID, Sprite sprite)
     {
-        Instance.gameOver.Play(playerID);
+        Instance.gameOver.Play(playerID, sprite);
     }
 
     #endregion

@@ -13,6 +13,14 @@ public class CharacterSelectionScrObj : ScriptableObject
 
     public List<Character> Players => players.ConvertAll(player => player.reference);
 
+    #region Public Methods
+
+    public Character GetCharacter(int playerID) => Players[playerID - 1];
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
     #region Editor
 
 #if UNITY_EDITOR

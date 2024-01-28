@@ -162,8 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c161c95ccd059409b0d85e5f058fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 2816740920334187375}
   anim: {fileID: 6868372894528948755}
+  text: {fileID: 2816740920334187375}
+  player: {fileID: 8559162232850221449}
 --- !u!95 &6868372894528948755
 Animator:
   serializedVersion: 3
@@ -268,12 +269,12 @@ PrefabInstance:
     - target: {fileID: 3862477723454130712, guid: a5f14e67a86339846af0db3c7535eb34,
         type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.3726415
       objectReference: {fileID: 0}
     - target: {fileID: 3862477723454130712, guid: a5f14e67a86339846af0db3c7535eb34,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.7575637
       objectReference: {fileID: 0}
     - target: {fileID: 3862477723454130712, guid: a5f14e67a86339846af0db3c7535eb34,
         type: 3}
