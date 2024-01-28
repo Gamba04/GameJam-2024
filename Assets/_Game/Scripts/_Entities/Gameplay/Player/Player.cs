@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     [Space]
     [SerializeField]
-    [Range(-1, 0)]
+    [Range(-1, 1)]
     private float groundedThreshold = -0.6f;
     [SerializeField]
     private float frictionThreshold = 0.1f;
@@ -104,11 +104,11 @@ public class Player : MonoBehaviour
 
         void ProcessCollision(ContactPoint2D contact)
         {
-            Vector2 vector = GetCollisionVector(contact);
+            Vector2 direction = -contact.normal;
 
-            UnityEngine.Debug.DrawRay(collider.transform.position, vector, Color.red);
+            UnityEngine.Debug.DrawRay(collider.transform.position, direction * 0.5f, Color.red);
 
-            float heightValue = Vector2.Dot(vector.normalized, Vector2.up);
+            float heightValue = Vector2.Dot(direction, Vector2.up);
             minHeight = Math.Min(minHeight, heightValue);
         }
     }
@@ -121,29 +121,16 @@ public class Player : MonoBehaviour
 
         if (player == null) return;
 
-        Vector2 direction = GetCollisionVector(contact).normalized;
+        Vector2 direction = -contact.normal;
 
-        ApplyKnockback();
+        player.Knockback(direction);
 
         if (hasCigarette && !hasCigaretteCooldown)
-        {
-            PassCigarette();
-        }
-
-        void ApplyKnockback()
-        {
-            Knockback(-direction);
-            player.Knockback(direction);
-        }
-
-        void PassCigarette()
         {
             SetCigarette(false);
             player.SetCigarette(true);
         }
     }
-
-    private Vector2 GetCollisionVector(ContactPoint2D contact) => contact.point - (Vector2)collider.transform.position;
 
     #endregion
 
