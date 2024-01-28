@@ -1067,8 +1067,8 @@ MonoBehaviour:
   charactersLibrary: {fileID: 11400000, guid: 2f5fa65a1672a4c4c9fdf8fabb222944, type: 2}
   characterSelection: {fileID: 11400000, guid: 948e5dad7cf48434095812b83cad6335, type: 2}
   playersManager: {fileID: 883199461}
-  minTimer: 20
-  maxTimer: 40
+  minTimer: 10
+  maxTimer: 15
   levelArea: {x: 12, y: 7}
   currentPlayer: 0
   timer: 0
@@ -1684,7 +1684,7 @@ PrefabInstance:
     - target: {fileID: 2816740920334187373, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1918.0189
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 7149174633335076023, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
         type: 3}
@@ -1720,6 +1720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208568804024960632, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02a3d6d8f61d7747bba92db9aee4f3f, type: 3}
