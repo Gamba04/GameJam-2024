@@ -10,17 +10,17 @@ PrefabInstance:
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.4245283
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.4245283
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4954850475432207662, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.4245283
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5775565626194898080, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
@@ -47,5 +47,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pipe Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 7792850810613025990, guid: f5418e61377faa047a81876ca2bcf1ef,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 164ff77defd5e3e468f31b4a0d74b3a6,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5418e61377faa047a81876ca2bcf1ef, type: 3}
