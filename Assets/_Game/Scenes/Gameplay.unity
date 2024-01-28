@@ -217,6 +217,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2054727564}
+  - {fileID: 1109465944}
   - {fileID: 2027136935}
   - {fileID: 20856590}
   m_Father: {fileID: 301562769}
@@ -245,6 +246,7 @@ MonoBehaviour:
   metrics: {fileID: 646566799}
   hudController: {fileID: 2054727565}
   pauseController: {fileID: 2027136936}
+  gameOver: {fileID: 1109465946}
 --- !u!114 &20363272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +290,7 @@ RectTransform:
   - {fileID: 1478502824}
   - {fileID: 1557193900}
   m_Father: {fileID: 20363270}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1371,7 +1373,7 @@ MonoBehaviour:
   playersManager: {fileID: 883199461}
   minTimer: 20
   maxTimer: 60
-  selectedPlayer: 0
+  currentPlayer: 0
   timer: 0
 --- !u!1 &1099458895
 GameObject:
@@ -1457,6 +1459,24 @@ Transform:
   m_Father: {fileID: 1568724396}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!224 &1109465944 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7149174633335076024, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7149174632292724704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1109465946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3174916434937450733, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7149174632292724704}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c161c95ccd059409b0d85e5f058fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137993084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,7 +2223,7 @@ RectTransform:
   m_Children:
   - {fileID: 2087532115}
   m_Father: {fileID: 20363270}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2377,3 +2397,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babe09b129ab64540bde629b8f3b1b2e, type: 3}
+--- !u!1001 &7149174632292724704
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 20363270}
+    m_Modifications:
+    - target: {fileID: 2816740920334187373, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1918.0189
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149174633335076023, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_Name
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149174633335076024, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149174633335076024, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149174633335076024, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149174633335076024, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149174633335076024, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149174633335076024, guid: f02a3d6d8f61d7747bba92db9aee4f3f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f02a3d6d8f61d7747bba92db9aee4f3f, type: 3}

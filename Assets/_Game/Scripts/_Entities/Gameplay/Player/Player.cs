@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    #region Custom Data
+
+    private enum State
+    {
+        Idle,
+        Normal,
+    }
+
+    #endregion
+
     [Header("Components")]
     [SerializeField]
     private Rigidbody2D rb;
@@ -47,6 +58,8 @@ public class Player : MonoBehaviour
 
     [Header("Info")]
     [ReadOnly, SerializeField]
+    private State state;
+    [ReadOnly, SerializeField]
     private bool isGrounded;
     [ReadOnly, SerializeField]
     private bool hasCigarette;
@@ -72,11 +85,13 @@ public class Player : MonoBehaviour
         input.Init(playerID);
 
         SetCigarette(false);
+
+        SetState(State.Normal);
     }
 
     private void InitEvents()
     {
-        input.onMovement += Move;
+        input.onMovement += Movement;
         input.onJump += Jump;
     }
 
@@ -133,7 +148,7 @@ public class Player : MonoBehaviour
 
         player.Knockback(direction);
 
-        if (hasCigarette && !hasCigaretteCooldown)
+        if (hasCigarette && !hasCigaretteCooldown && state != State.Idle)
         {
             SetCigarette(false);
             player.SetCigarette(true);
@@ -146,7 +161,31 @@ public class Player : MonoBehaviour
 
     #region Mechanics
 
-    private void Move(float input)
+    private void Movement(float input)
+    {
+        Action<float> movement = state switch
+        {
+            State.Normal => NormalMovement,
+            _ => null
+        };
+
+        movement?.Invoke(input);
+    }
+
+    private void Jump()
+    {
+        Action jump = state switch
+        {
+            State.Normal => NormalJump,
+            _ => null
+        };
+
+        jump?.Invoke();
+    }
+
+    #region Normal
+
+    private void NormalMovement(float input)
     {
         float velocity = rb.velocity.x;
         float inputAmount = Mathf.Abs(input);
@@ -196,12 +235,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Jump()
+    private void NormalJump()
     {
         if (!isGrounded) return;
 
-        rb.velocity = new Vector2(rb.velocity.x, jump);
+        rb.velocity = new Vector2(rb.velocity.x, this.jump);
     }
+
+    #endregion
 
     #endregion
 
@@ -224,6 +265,17 @@ public class Player : MonoBehaviour
     public void Knockback(Vector2 direction)
     {
         rb.velocity = direction * knockback;
+    }
+
+    public void GameOver()
+    {
+        SetState(State.Idle);
+
+        Vector2 direction = new Vector2(GetRandomValue(), GetRandomValue()).normalized;
+
+        Knockback(direction);
+
+        float GetRandomValue() => UnityEngine.Random.Range(-1f, 1f);
     }
 
     #endregion
@@ -256,6 +308,11 @@ public class Player : MonoBehaviour
         {
             hasCigaretteCooldown = false;
         }
+    }
+
+    private void SetState(State state)
+    {
+        this.state = state;
     }
 
     #endregion

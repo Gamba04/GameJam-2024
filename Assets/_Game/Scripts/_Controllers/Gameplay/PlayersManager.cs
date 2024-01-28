@@ -67,6 +67,11 @@ public class PlayersManager : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        players.ForEach(player => player.GameOver());
+    }
+
     #endregion
 
 }

@@ -10,6 +10,8 @@ public class GplayUI : UIManager
     private HUDController hudController;
     [SerializeField]
     private PauseController pauseController;
+    [SerializeField]
+    private GameOver gameOver;
 
     #region Singleton Override
 
@@ -36,6 +38,11 @@ public class GplayUI : UIManager
     {
         Instance.hudController.SetVisible(!value);
         Instance.pauseController.SetVisible(value);
+    }
+
+    public static void GameOver(int playerID)
+    {
+        Instance.gameOver.Play(playerID);
     }
 
     #endregion
