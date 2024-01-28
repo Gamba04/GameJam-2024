@@ -377,7 +377,7 @@ MonoBehaviour:
   speed: 7
   acceleration: 75
   groundFriction: 20
-  wallFriction: 20
+  wallFriction: 10
   airFriction: 2
   frictionThreshold: 0.2
   jump: 14
@@ -391,6 +391,8 @@ MonoBehaviour:
   groundedThreshold: -0.6
   wallTargetValue: 0
   wallValueRange: 0.2
+  groundedDropTimeout: 0.2
+  wallRideDropTimeout: 0.1
   state: 0
   isGrounded: 0
   isWallRiding: 0
