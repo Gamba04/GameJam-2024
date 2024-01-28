@@ -61,14 +61,18 @@ public class CigaretteOverlay : MonoBehaviour
 
     private void StartTransition()
     {
-        overlayTransition.SetValues(overlay.position, overlay.localScale.x);
-        overlayTransition.StartTransition(startingPlayer.transform.position, targetSize, OnFinishSequence);
+        boxAnim.SetTrigger("Out");
+
+        Timer.CallOnDelay(() =>
+        {
+            overlayTransition.SetValues(overlay.position, overlay.localScale.x);
+            overlayTransition.StartTransition(startingPlayer.transform.position, targetSize, OnFinishSequence);
+        }, delay);
     }
 
     private void OnFinishSequence()
     {
         overlay.gameObject.SetActive(false);
-        boxAnim.SetTrigger("Out");
 
         onFinishSequence?.Invoke();
     }
