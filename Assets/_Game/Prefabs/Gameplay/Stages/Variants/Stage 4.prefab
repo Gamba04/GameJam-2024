@@ -2220,42 +2220,42 @@ PrefabInstance:
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[0].x
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[0].y
-      value: -5
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[1].x
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[1].y
-      value: -5
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[2].x
-      value: -10
+      value: -6.3
       objectReference: {fileID: 0}
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[2].y
-      value: 3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[3].x
-      value: 5.5
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 6132819088453206837, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
       propertyPath: spawnPoints.Array.data[3].y
-      value: -1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6250132742656504764, guid: 1d69c121b094cb849a868cc36626b924,
         type: 3}
