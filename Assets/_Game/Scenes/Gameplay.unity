@@ -1195,8 +1195,8 @@ MonoBehaviour:
   playersManager: {fileID: 883199461}
   levelsParent: {fileID: 206536641}
   cigaretteOverlay: {fileID: 392478170}
-  minTimer: 10
-  maxTimer: 15
+  minTimer: 20
+  maxTimer: 30
   levelArea: {x: 12, y: 7}
   currentPlayer: 0
   timer: 0

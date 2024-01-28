@@ -45,6 +45,11 @@ public class PlayerVisuals : MonoBehaviour
         anim.SetBool("WallRiding", value);
     }
 
+    public void SetBall(bool value)
+    {
+        anim.SetBool("Ball", value);
+    }
+
     #endregion
 
 }

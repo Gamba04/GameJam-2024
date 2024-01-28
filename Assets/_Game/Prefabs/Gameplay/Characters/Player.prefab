@@ -382,12 +382,17 @@ MonoBehaviour:
   frictionThreshold: 0.2
   jump: 14
   knockback: 20
+  ballAcceleration: 50
+  ballSpeed: 15
+  ballJump: 10
   worldDetection:
     serializedVersion: 2
     m_Bits: 257
   playerDetection:
     serializedVersion: 2
     m_Bits: 256
+  normalMaterial: {fileID: 6200000, guid: 1fba790c4536c3f4ea625ea707307696, type: 2}
+  ballMaterial: {fileID: 6200000, guid: 945d8d5db6373864fb08e3cbeab83a48, type: 2}
   groundedThreshold: -0.6
   wallTargetValue: 0
   wallValueRange: 0.2

@@ -48,11 +48,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float knockback;
 
+    [Header("Ball")]
+    [SerializeField]
+    private float ballAcceleration;
+    [SerializeField]
+    private float ballSpeed;
+    [SerializeField]
+    private float ballJump;
+
     [Header("Collisions")]
     [SerializeField]
     private LayerMask worldDetection;
     [SerializeField]
     private LayerMask playerDetection;
+
+    [Space]
+    [SerializeField]
+    private PhysicsMaterial2D normalMaterial;
+    [SerializeField]
+    private PhysicsMaterial2D ballMaterial;
 
     [Space]
     [SerializeField]
@@ -109,8 +123,7 @@ public class Player : MonoBehaviour
 
         input.Init(playerID);
 
-        SetState(State.Idle);
-
+        SetBall(false);
         SetCigarette(false);
     }
 
@@ -220,7 +233,7 @@ public class Player : MonoBehaviour
 
     private void UpdateWallRide()
     {
-        if (!isWallRiding) return;
+        if (state != State.Normal || !isWallRiding) return;
 
         float velocity = rb.velocity.y;
 
@@ -257,6 +270,7 @@ public class Player : MonoBehaviour
         Action<float> movement = state switch
         {
             State.Normal => NormalMovement,
+            State.Ball => BallMovement,
             _ => null
         };
 
@@ -273,6 +287,7 @@ public class Player : MonoBehaviour
         Action jump = state switch
         {
             State.Normal => NormalJump,
+            State.Ball => BallJump,
             _ => null
         };
 
@@ -286,7 +301,31 @@ public class Player : MonoBehaviour
 
     private void ToggleBall()
     {
+        switch (state)
+        {
+            case State.Normal:
+                SetBall(true);
+                break;
 
+            case State.Ball:
+                SetBall(false);
+                break;
+        }
+    }
+
+    private void SetBall(bool value)
+    {
+        SetState(value ? State.Ball : State.Normal);
+
+        visuals.SetBall(value);
+
+        collider.sharedMaterial = value ? ballMaterial : normalMaterial;
+        rb.constraints = value ? RigidbodyConstraints2D.None : RigidbodyConstraints2D.FreezeRotation;
+
+        if (!value)
+        {
+            rb.rotation = 0;
+        }
     }
 
     #region Normal
@@ -362,6 +401,37 @@ public class Player : MonoBehaviour
     // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Ball
+
+    private void BallMovement(float input)
+    {
+        float velocity = rb.velocity.x;
+
+        ApplyAcceleration();
+        LimitSpeed();
+
+        rb.velocity = new Vector2(velocity, rb.velocity.y);
+
+        void ApplyAcceleration()
+        {
+            velocity += input * ballAcceleration * Time.deltaTime;
+        }
+
+        void LimitSpeed()
+        {
+            velocity = Mathf.Min(GetMagnitude(), ballSpeed) * GetDirection();
+        }
+
+        float GetMagnitude() => Mathf.Abs(velocity);
+
+        float GetDirection() => Mathf.Sign(velocity);
+    }
+
+    private void BallJump()
+    {
+        if (!isGrounded) return;
+
+        rb.velocity = new Vector2(rb.velocity.x, ballJump);
+    }
 
     #endregion
 
@@ -510,6 +580,9 @@ public class Player : MonoBehaviour
         GambaFunctions.RestrictNegativeValues(ref wallFriction);
         GambaFunctions.RestrictNegativeValues(ref groundedDropTimeout);
         GambaFunctions.RestrictNegativeValues(ref wallRideDropTimeout);
+        GambaFunctions.RestrictNegativeValues(ref ballAcceleration);
+        GambaFunctions.RestrictNegativeValues(ref ballSpeed);
+        GambaFunctions.RestrictNegativeValues(ref ballJump);
     }
 
 #endif
