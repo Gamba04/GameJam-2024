@@ -374,7 +374,7 @@ MonoBehaviour:
   input: {fileID: 7191676728884489726}
   visuals: {fileID: 789612473564386582}
   cigaretteCooldown: 0.25
-  speed: 7
+  speed: 8
   acceleration: 75
   groundFriction: 20
   wallFriction: 10
