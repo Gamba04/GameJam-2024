@@ -374,22 +374,27 @@ MonoBehaviour:
   input: {fileID: 7191676728884489726}
   visuals: {fileID: 789612473564386582}
   cigaretteCooldown: 0.25
+  speed: 7
+  acceleration: 75
+  groundFriction: 20
+  wallFriction: 20
+  airFriction: 2
+  frictionThreshold: 0.2
+  jump: 14
+  knockback: 20
   worldDetection:
     serializedVersion: 2
     m_Bits: 257
   playerDetection:
     serializedVersion: 2
     m_Bits: 256
-  speed: 7
-  acceleration: 75
-  groundFriction: 20
-  airFriction: 2
-  jump: 14
-  knockback: 20
   groundedThreshold: -0.6
-  frictionThreshold: 0.2
+  wallTargetValue: 0
+  wallValueRange: 0.2
   state: 0
   isGrounded: 0
+  isWallRiding: 0
+  wallDirection: 0
   hasCigarette: 0
   hasCigaretteCooldown: 0
 --- !u!114 &7191676728884489726

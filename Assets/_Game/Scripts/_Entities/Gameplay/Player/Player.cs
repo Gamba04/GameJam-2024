@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float groundFriction;
     [SerializeField]
+    private float wallFriction;
+    [SerializeField]
     private float airFriction;
     [SerializeField]
     private float frictionThreshold = 0.1f;
@@ -59,6 +61,7 @@ public class Player : MonoBehaviour
     [Range(-1, 1)]
     private float wallTargetValue;
     [SerializeField]
+    [Range(0, 0.5f)]
     private float wallValueRange;
 
     [Header("Info")]
@@ -66,6 +69,10 @@ public class Player : MonoBehaviour
     private State state;
     [ReadOnly, SerializeField]
     private bool isGrounded;
+    [ReadOnly, SerializeField]
+    private bool isWallRiding;
+    [ReadOnly, SerializeField]
+    private int wallDirection;
     [ReadOnly, SerializeField]
     private bool hasCigarette;
     [ReadOnly, SerializeField]
@@ -109,6 +116,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateCollisions();
+        UpdateWallRide();
     }
 
     private void UpdateCollisions()
@@ -124,21 +132,48 @@ public class Player : MonoBehaviour
 
     private void ProcessWorldCollisions(List<ContactPoint2D> contacts)
     {
-        float minHeight = 1;
+        float minX = 1;
+        float maxX = -1;
+        float minY = 1;
 
-        contacts.ForEach(ProcessCollision);
+        contacts.ForEach(ProcessCollisionValues);
 
-        SetGrounded(minHeight <= groundedThreshold);
+        SetGrounded(minY <= groundedThreshold);
+        SetWallRiding(CheckWallRiding(out wallDirection));
 
-        void ProcessCollision(ContactPoint2D contact)
+        void ProcessCollisionValues(ContactPoint2D contact)
         {
             Vector2 direction = -contact.normal;
 
             UnityEngine.Debug.DrawRay(collider.transform.position, direction * 0.5f, Color.red);
 
-            float heightValue = Vector2.Dot(direction, Vector2.up);
-            minHeight = Math.Min(minHeight, heightValue);
+            float xValue = Vector2.Dot(direction, Vector2.right);
+            float yValue = Vector2.Dot(direction, Vector2.up);
+
+            minX = Mathf.Min(minX, xValue);
+            maxX = Mathf.Max(maxX, xValue);
+            minY = Mathf.Min(minY, yValue);
         }
+
+        bool CheckWallRiding(out int direction)
+        {
+            direction = 0;
+
+            float yMinLimit = wallTargetValue - wallValueRange;
+            float yMaxLimit = wallTargetValue + wallValueRange;
+
+            if (minY > yMaxLimit || minY < yMinLimit) return false;
+
+            int minDir = GetWallDir(minX);
+            int maxDir = GetWallDir(maxX);
+
+            if (minDir != maxDir) return false;
+
+            direction = minDir;
+            return true;
+        }
+
+        int GetWallDir(float value) => value > 0 ? 1 : -1;
     }
 
     private void ProcessPlayerCollision(ContactPoint2D contact)
@@ -158,6 +193,17 @@ public class Player : MonoBehaviour
             SetCigarette(false);
             player.SetCigarette(true);
         }
+    }
+
+    private void UpdateWallRide()
+    {
+        if (!isWallRiding) return;
+
+        float velocity = rb.velocity.y;
+
+        velocity /= 1 + wallFriction * Time.deltaTime;
+
+        rb.velocity = new Vector2(rb.velocity.x, velocity);
     }
 
     #endregion
@@ -242,9 +288,18 @@ public class Player : MonoBehaviour
 
     private void NormalJump()
     {
-        if (!isGrounded) return;
+        if (isWallRiding)
+        {
+            int jumpDirection = -wallDirection;
 
-        rb.velocity = new Vector2(rb.velocity.x, this.jump);
+            visuals.SetDirection(jumpDirection);
+
+            rb.velocity = new Vector2(jumpDirection * jump, jump);
+        }
+        else if (isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jump);
+        }
     }
 
     #endregion
@@ -291,9 +346,20 @@ public class Player : MonoBehaviour
 
     private void SetGrounded(bool value)
     {
-        isGrounded = value;
+        if (value != isGrounded)
+        {
+            isGrounded = value;
+            visuals.SetGrounded(value);
+        }
+    }
 
-        visuals.SetGrounded(value);
+    private void SetWallRiding(bool value)
+    {
+        if (value != isWallRiding)
+        {
+            isWallRiding = value;
+            visuals.SetWallRiding(value);
+        }
     }
 
     private void OnCigarette()
@@ -343,7 +409,7 @@ public class Player : MonoBehaviour
         GambaFunctions.RestrictNegativeValues(ref jump);
         GambaFunctions.RestrictNegativeValues(ref frictionThreshold);
         GambaFunctions.RestrictNegativeValues(ref knockback);
-        GambaFunctions.RestrictNegativeValues(ref wallValueRange);
+        GambaFunctions.RestrictNegativeValues(ref wallFriction);
     }
 
 #endif

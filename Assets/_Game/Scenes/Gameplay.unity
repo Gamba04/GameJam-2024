@@ -1158,8 +1158,8 @@ MonoBehaviour:
   charactersLibrary: {fileID: 11400000, guid: 2f5fa65a1672a4c4c9fdf8fabb222944, type: 2}
   characterSelection: {fileID: 11400000, guid: 948e5dad7cf48434095812b83cad6335, type: 2}
   playersManager: {fileID: 883199461}
-  minTimer: 10
-  maxTimer: 20
+  minTimer: 20
+  maxTimer: 40
   currentPlayer: 0
   timer: 0
 --- !u!1 &1099458895
