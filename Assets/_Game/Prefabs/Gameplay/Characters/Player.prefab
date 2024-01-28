@@ -249,14 +249,19 @@ MonoBehaviour:
   worldDetection:
     serializedVersion: 2
     m_Bits: 257
+  playerDetection:
+    serializedVersion: 2
+    m_Bits: 256
   speed: 7
   acceleration: 75
   groundFriction: 20
   airFriction: 2
   jump: 14
+  knockback: 20
   groundedThreshold: -0.6
   frictionThreshold: 0.2
   isGrounded: 0
+  hasCigarette: 0
 --- !u!114 &7191676728884489726
 MonoBehaviour:
   m_ObjectHideFlags: 0

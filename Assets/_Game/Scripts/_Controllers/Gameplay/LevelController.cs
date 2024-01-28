@@ -18,7 +18,7 @@ public class LevelController : MonoBehaviour
 
     private void InitEvents()
     {
-        playersManager.onPlayerBareto += OnPlayerBareto;
+        playersManager.onPlayerCigarette += OnPlayerCigarette;
     }
 
     #endregion
@@ -27,9 +27,9 @@ public class LevelController : MonoBehaviour
 
     #region Other
 
-    private void OnPlayerBareto(int playerID)
+    private void OnPlayerCigarette(int playerID)
     {
-        Debug.Log($"New player with bareto: Player {playerID}", Color.red);
+        Debug.Log($"New player with bareto: Player {playerID}", Color.cyan);
     }
 
     #endregion
