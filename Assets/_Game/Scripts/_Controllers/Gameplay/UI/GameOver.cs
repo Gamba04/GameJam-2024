@@ -37,12 +37,13 @@ public class GameOver : MonoBehaviour
 
     #region Public Methods
 
-    public void Play(int playerID, Sprite sprite)
+    public void Play(int playerID, CharacterInfo info)
     {
         anim.SetTrigger("Play");
 
         text.text = $"PLAYER {playerID} WINS!!!!";
-        player.sprite = sprite;
+        player.sprite = info.winSprite;
+        SFXPlayer.PlaySFX(info.sfx);
     }
 
     public void EnableRestart()

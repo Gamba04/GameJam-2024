@@ -121,8 +121,8 @@ public class LevelController : MonoBehaviour
         void PlayUI()
         {
             Character character = characterSelection.GetCharacter(currentPlayer);
-            Sprite playerSprite = charactersLibrary.GetCharacterInfo(character).winSprite;
-            GplayUI.GameOver(currentPlayer, playerSprite);
+            CharacterInfo info = charactersLibrary.GetCharacterInfo(character);
+            GplayUI.GameOver(currentPlayer, info);
         }
     }
 
