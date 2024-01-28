@@ -8,6 +8,24 @@ public enum SFXTag
 {
     ButtonHover,
     ButtonClick,
+    TntJump1,
+    TntJump2,
+    TntJump3,
+    TntExplosion,
+    FatmanJump1,
+    FatmanJump2,
+    FatmanJump3,
+    FatmanExplosion,
+    PipeBombJump1,
+    PipeBombJump2,
+    PipeBombJump3,
+    PipeBombExplosion,
+    DetonatorJump1,
+    DetonatorJump2,
+    PDetonatorJump3,
+    DetonatorExplosion,
+    Plon,
+    Explosion,
 }
 
 /// <summary> SFX Loop sounds. </summary>
