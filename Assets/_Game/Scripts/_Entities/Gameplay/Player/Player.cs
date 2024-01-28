@@ -125,6 +125,8 @@ public class Player : MonoBehaviour
 
         SetBall(false);
         SetCigarette(false);
+
+        SetState(State.Idle);
     }
 
     private void InitEvents()
