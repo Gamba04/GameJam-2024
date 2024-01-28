@@ -22,12 +22,11 @@ public class PlayersManager : MonoBehaviour
 
     #region Init
 
-    public void Init(CharactersLibraryScrObj charactersLibrary, CharacterSelectionScrObj characterSelection, Vector2 levelArea, int startingPlayer, List<Vector2> spawnPoints)
+    public void Init(CharactersLibraryScrObj charactersLibrary, CharacterSelectionScrObj characterSelection, Vector2 levelArea, List<Vector2> spawnPoints)
     {
         this.charactersLibrary = charactersLibrary;
         this.characterSelection = characterSelection;
         this.levelArea = levelArea;
-        this.startingPlayer = startingPlayer;
         this.spawnPoints = spawnPoints;
 
         CreatePlayers();
@@ -53,7 +52,6 @@ public class PlayersManager : MonoBehaviour
         player.transform.position = spawnPoints[playerID - 1];
 
         player.Init(playerID, levelArea);
-        player.SetCigarette(playerID == startingPlayer);
 
         player.onCigarette += () => onPlayerCigarette?.Invoke(playerID);
 
@@ -65,6 +63,11 @@ public class PlayersManager : MonoBehaviour
     // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Public Methods
+
+    public void StartGame(int startingPlayer)
+    {
+        players.ForEach(player => player.OnStartGame(startingPlayer));
+    }
 
     public void GameOver()
     {

@@ -108,7 +108,9 @@ public class Player : MonoBehaviour
 
         input.Init(playerID);
 
-        SetState(State.Normal);
+        SetState(State.Idle);
+
+        SetCigarette(false);
     }
 
     private void InitEvents()
@@ -355,6 +357,12 @@ public class Player : MonoBehaviour
     // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Public Methods
+
+    public void OnStartGame(int startingPlayer)
+    {
+        SetState(State.Normal);
+        SetCigarette(playerID == startingPlayer);
+    }
 
     public void SetCigarette(bool value)
     {

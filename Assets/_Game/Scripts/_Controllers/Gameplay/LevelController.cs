@@ -42,20 +42,14 @@ public class LevelController : MonoBehaviour
     {
         InitEvents();
 
-        StartTimer();
         BuildLevel(out List<Vector2> spawnPoints);
-        currentPlayer = GetRandomPlayer();
-        playersManager.Init(charactersLibrary, characterSelection, levelArea, currentPlayer, spawnPoints);
+        playersManager.Init(charactersLibrary, characterSelection, levelArea, spawnPoints);
+        StartGame();
     }
 
     private void InitEvents()
     {
         playersManager.onPlayerCigarette += OnPlayerCigarette;
-    }
-
-    private void StartTimer()
-    {
-        timer = UnityEngine.Random.Range(minTimer, maxTimer);
     }
 
     private void BuildLevel(out List<Vector2> spawnPoints)
@@ -66,6 +60,24 @@ public class LevelController : MonoBehaviour
         level.name = levelPrefab.name;
 
         spawnPoints = level.SpawnPoints;
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Start Level
+
+    private void StartGame()
+    {
+        StartTimer();
+        currentPlayer = GetRandomPlayer();
+        playersManager.StartGame(currentPlayer);
+    }
+
+    private void StartTimer()
+    {
+        timer = UnityEngine.Random.Range(minTimer, maxTimer);
     }
 
     private int GetRandomPlayer() => UnityEngine.Random.Range(0, characterSelection.Players.Count) + 1;
