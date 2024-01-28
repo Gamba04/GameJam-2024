@@ -13,7 +13,6 @@ public class PlayersManager : MonoBehaviour
 
     private Vector2 levelArea;
 
-    private int startingPlayer;
     private List<Vector2> spawnPoints;
 
     private readonly List<Player> players = new List<Player>();
@@ -73,6 +72,8 @@ public class PlayersManager : MonoBehaviour
     {
         players.ForEach(player => player.GameOver());
     }
+
+    public Player GetPlayer(int playerID) => players[playerID - 1];
 
     #endregion
 

@@ -17,6 +17,8 @@ public class LevelController : MonoBehaviour
     private PlayersManager playersManager;
     [SerializeField]
     private Transform levelsParent;
+    [SerializeField]
+    private CigaretteOverlay cigaretteOverlay;
 
     [Header("Settings")]
     [SerializeField]
@@ -34,8 +36,6 @@ public class LevelController : MonoBehaviour
     [ReadOnly, SerializeField]
     private float timer;
 
-    private bool gameOver;
-
     #region Init
 
     public void Init()
@@ -44,12 +44,14 @@ public class LevelController : MonoBehaviour
 
         BuildLevel(out List<Vector2> spawnPoints);
         playersManager.Init(charactersLibrary, characterSelection, levelArea, spawnPoints);
-        StartGame();
+        currentPlayer = GetRandomPlayer();
+        cigaretteOverlay.StartSequence(playersManager.GetPlayer(currentPlayer));
     }
 
     private void InitEvents()
     {
         playersManager.onPlayerCigarette += OnPlayerCigarette;
+        cigaretteOverlay.onFinishSequence += StartGame;
     }
 
     private void BuildLevel(out List<Vector2> spawnPoints)
@@ -62,16 +64,17 @@ public class LevelController : MonoBehaviour
         spawnPoints = level.SpawnPoints;
     }
 
+    private int GetRandomPlayer() => UnityEngine.Random.Range(0, characterSelection.Players.Count) + 1;
+
     #endregion
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
-    #region Start Level
+    #region Start Game
 
     private void StartGame()
     {
         StartTimer();
-        currentPlayer = GetRandomPlayer();
         playersManager.StartGame(currentPlayer);
     }
 
@@ -79,8 +82,6 @@ public class LevelController : MonoBehaviour
     {
         timer = UnityEngine.Random.Range(minTimer, maxTimer);
     }
-
-    private int GetRandomPlayer() => UnityEngine.Random.Range(0, characterSelection.Players.Count) + 1;
 
     #endregion
 
@@ -111,8 +112,6 @@ public class LevelController : MonoBehaviour
 
     private void OnGameOver()
     {
-        gameOver = true;
-
         playersManager.GameOver();
 
         PlayUI();
