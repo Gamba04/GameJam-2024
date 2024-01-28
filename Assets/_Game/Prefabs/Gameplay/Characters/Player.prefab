@@ -413,7 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAxis: Movement
   jumpButton: Jump
-  toggleButton: Toggle
+  ballButton: Ball
   joystickCorrection:
     serializedVersion: 2
     m_Curve:

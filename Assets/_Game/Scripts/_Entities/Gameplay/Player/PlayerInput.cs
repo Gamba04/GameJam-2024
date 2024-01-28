@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     private string jumpButton;
     [SerializeField]
-    private string toggleButton;
+    private string ballButton;
 
     [Header("Settings")]
     [SerializeField]
@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
 
     public event Action<float> onMovement;
     public event Action onJump;
-    public event Action onToggle;
+    public event Action onBall;
 
     #region Init
 
@@ -66,7 +66,7 @@ public class PlayerInput : MonoBehaviour
     private void CheckButtons()
     {
         CheckButton(jumpButton, onJump);
-        CheckButton(toggleButton, onToggle);
+        CheckButton(ballButton, onBall);
     }
 
     #endregion

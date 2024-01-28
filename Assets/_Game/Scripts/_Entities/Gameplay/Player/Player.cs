@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     {
         Idle,
         Normal,
+        Ball
     }
 
     #endregion
@@ -117,6 +118,7 @@ public class Player : MonoBehaviour
     {
         input.onMovement += Movement;
         input.onJump += Jump;
+        input.onBall += ToggleBall;
     }
 
     #endregion
@@ -282,6 +284,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ToggleBall()
+    {
+
+    }
+
     #region Normal
 
     private void NormalMovement(float input)
@@ -349,6 +356,12 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jump);
         }
     }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Ball
 
     #endregion
 
