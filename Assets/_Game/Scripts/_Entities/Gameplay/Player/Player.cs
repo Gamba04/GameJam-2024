@@ -108,8 +108,6 @@ public class Player : MonoBehaviour
 
         input.Init(playerID);
 
-        SetCigarette(false);
-
         SetState(State.Normal);
     }
 

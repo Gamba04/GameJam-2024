@@ -9,10 +9,14 @@ public class LevelController : MonoBehaviour
     private CharactersLibraryScrObj charactersLibrary;
     [SerializeField]
     private CharacterSelectionScrObj characterSelection;
+    [SerializeField]
+    private LevelsLibraryScrObj levelsLibrary;
 
     [Header("Components")]
     [SerializeField]
     private PlayersManager playersManager;
+    [SerializeField]
+    private Transform levelsParent;
 
     [Header("Settings")]
     [SerializeField]
@@ -38,9 +42,10 @@ public class LevelController : MonoBehaviour
     {
         InitEvents();
 
-        playersManager.Init(charactersLibrary, characterSelection, levelArea);
-
-        StartLevel();
+        StartTimer();
+        BuildLevel(out List<Vector2> spawnPoints);
+        currentPlayer = GetRandomPlayer();
+        playersManager.Init(charactersLibrary, characterSelection, levelArea, currentPlayer, spawnPoints);
     }
 
     private void InitEvents()
@@ -48,21 +53,19 @@ public class LevelController : MonoBehaviour
         playersManager.onPlayerCigarette += OnPlayerCigarette;
     }
 
-    #endregion
-
-    // ----------------------------------------------------------------------------------------------------------------------------
-
-    #region StartLevel
-
-    private void StartLevel()
-    {
-        StartTimer();
-        playersManager.StartLevel(GetRandomPlayer());
-    }
-
     private void StartTimer()
     {
         timer = UnityEngine.Random.Range(minTimer, maxTimer);
+    }
+
+    private void BuildLevel(out List<Vector2> spawnPoints)
+    {
+        Level levelPrefab = levelsLibrary.GetRandomLevel();
+
+        Level level = Instantiate(levelPrefab, levelsParent);
+        level.name = levelPrefab.name;
+
+        spawnPoints = level.SpawnPoints;
     }
 
     private int GetRandomPlayer() => UnityEngine.Random.Range(0, characterSelection.Players.Count) + 1;
@@ -76,20 +79,11 @@ public class LevelController : MonoBehaviour
     private void Update()
     {
         UpdateTimer();
-        UpdateInputs();
     }
 
     private void UpdateTimer()
     {
         Timer.ReduceCooldown(ref timer, OnGameOver);
-    }
-
-    private void UpdateInputs()
-    {
-        if (gameOver && Input.GetButtonDown("Restart"))
-        {
-            UIManager.SetFade(false, GambaFunctions.ReloadScene);
-        }
     }
 
     #endregion

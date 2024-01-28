@@ -11,6 +11,32 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private Image player;
 
+    private bool restartAvailable;
+
+    #region Update
+
+    private void Update()
+    {
+        UpdateInputs();   
+    }
+
+    private void UpdateInputs()
+    {
+        if (restartAvailable && Input.anyKeyDown)
+        {
+            if (!UIManager.IsOnTransition)
+            {
+                UIManager.SetFade(true, GambaFunctions.ReloadScene);
+            }
+        }
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Public Methods
+
     public void Play(int playerID, Sprite sprite)
     {
         anim.SetTrigger("Play");
@@ -18,4 +44,12 @@ public class GameOver : MonoBehaviour
         text.text = $"PLAYER {playerID} WINS!!!!";
         player.sprite = sprite;
     }
+
+    public void EnableRestart()
+    {
+        restartAvailable = true;
+    }
+
+    #endregion
+
 }

@@ -13,18 +13,22 @@ public class PlayersManager : MonoBehaviour
 
     private Vector2 levelArea;
 
+    private int startingPlayer;
+    private List<Vector2> spawnPoints;
+
     private readonly List<Player> players = new List<Player>();
 
     public event Action<int> onPlayerCigarette;
 
     #region Init
 
-    public void Init(CharactersLibraryScrObj charactersLibrary, CharacterSelectionScrObj characterSelection, Vector2 levelArea)
+    public void Init(CharactersLibraryScrObj charactersLibrary, CharacterSelectionScrObj characterSelection, Vector2 levelArea, int startingPlayer, List<Vector2> spawnPoints)
     {
-        this.levelArea = levelArea;
-
         this.charactersLibrary = charactersLibrary;
         this.characterSelection = characterSelection;
+        this.levelArea = levelArea;
+        this.startingPlayer = startingPlayer;
+        this.spawnPoints = spawnPoints;
 
         CreatePlayers();
     }
@@ -46,7 +50,10 @@ public class PlayersManager : MonoBehaviour
         Player player = Instantiate(character.prefab, playersParent);
         player.name = $"Player {playerID}: {character.displayName}";
 
+        player.transform.position = spawnPoints[playerID - 1];
+
         player.Init(playerID, levelArea);
+        player.SetCigarette(playerID == startingPlayer);
 
         player.onCigarette += () => onPlayerCigarette?.Invoke(playerID);
 
@@ -58,18 +65,6 @@ public class PlayersManager : MonoBehaviour
     // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Public Methods
-
-    public void StartLevel(int startingPlayer)
-    {
-        players.ForEach(ProcessPlayer);
-
-        void ProcessPlayer(Player player)
-        {
-            bool selected = player.PlayerID == startingPlayer;
-
-            player.SetCigarette(selected);
-        }
-    }
 
     public void GameOver()
     {

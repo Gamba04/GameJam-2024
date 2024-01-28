@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterSelectionScrObj : ScriptableObject
 {
     private const string ASSET_NAME = "Character Selection";
-    private const int MAX_PLAYERS = 4;
+    public const int MAX_PLAYERS = 4;
 
     [SerializeField]
     private List<NamedReference<Character>> players = new List<NamedReference<Character>>();
