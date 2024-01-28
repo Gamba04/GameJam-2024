@@ -22,9 +22,11 @@ public class LevelController : MonoBehaviour
 
     [Header("Info")]
     [ReadOnly, SerializeField]
-    private int selectedPlayer;
+    private int currentPlayer;
     [ReadOnly, SerializeField]
     private float timer;
+
+    private bool gameOver;
 
     #region Init
 
@@ -34,7 +36,7 @@ public class LevelController : MonoBehaviour
 
         playersManager.Init(charactersLibrary, characterSelection);
 
-        Timer.CallOnDelay(StartLevel, 2);
+        StartLevel();
     }
 
     private void InitEvents()
@@ -70,11 +72,20 @@ public class LevelController : MonoBehaviour
     private void Update()
     {
         UpdateTimer();
+        UpdateInputs();
     }
 
     private void UpdateTimer()
     {
         Timer.ReduceCooldown(ref timer, OnGameOver);
+    }
+
+    private void UpdateInputs()
+    {
+        if (gameOver && Input.GetButtonDown("Restart"))
+        {
+            UIManager.SetFade(false, GambaFunctions.ReloadScene);
+        }
     }
 
     #endregion
@@ -85,12 +96,15 @@ public class LevelController : MonoBehaviour
 
     private void OnPlayerCigarette(int playerID)
     {
-        selectedPlayer = playerID;
+        currentPlayer = playerID;
     }
 
     private void OnGameOver()
     {
-        GambaFunctions.ReloadScene();
+        gameOver = true;
+
+        playersManager.GameOver();
+        GplayUI.GameOver(currentPlayer);
     }
 
     #endregion
