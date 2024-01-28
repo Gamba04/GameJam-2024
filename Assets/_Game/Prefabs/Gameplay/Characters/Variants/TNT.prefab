@@ -7,6 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef,
+        type: 3}
+      propertyPath: jumpSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef,
+        type: 3}
+      propertyPath: jumpSFX.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef,
+        type: 3}
+      propertyPath: jumpSFX.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 936528247059513849, guid: f5418e61377faa047a81876ca2bcf1ef,
+        type: 3}
+      propertyPath: jumpSFX.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4951560620102054032, guid: f5418e61377faa047a81876ca2bcf1ef,
         type: 3}
       propertyPath: m_LocalPosition.x

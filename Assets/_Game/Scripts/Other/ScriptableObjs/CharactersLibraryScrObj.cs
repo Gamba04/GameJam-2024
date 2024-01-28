@@ -20,6 +20,7 @@ public class CharacterInfo
     public string displayName;
     public Sprite winSprite;
     public Player prefab;
+    public SFXTag sfx;
 
     public void EditorUpdate(Character character)
     {

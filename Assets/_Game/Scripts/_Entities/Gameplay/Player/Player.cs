@@ -93,6 +93,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float wallRideDropTimeout;
 
+    [Header("Audio")]
+    [SerializeField]
+    private List<SFXTag> jumpSFX;
+
     [Header("Info")]
     [ReadOnly, SerializeField]
     private State state;
@@ -408,6 +412,8 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jump);
         }
+
+        SFXPlayer.PlayRandomSFX(jumpSFX);
     }
 
     #endregion
@@ -445,6 +451,8 @@ public class Player : MonoBehaviour
         if (!isGrounded) return;
 
         rb.velocity = new Vector2(rb.velocity.x, ballJump);
+
+        SFXPlayer.PlayRandomSFX(jumpSFX);
     }
 
     #endregion
