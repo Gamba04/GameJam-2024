@@ -6,6 +6,8 @@ public class CigaretteOverlay : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Transform overlay;
+    [SerializeField]
+    private Animator boxAnim;
 
     [Header("Settings")]
     [SerializeField]
@@ -66,6 +68,7 @@ public class CigaretteOverlay : MonoBehaviour
     private void OnFinishSequence()
     {
         overlay.gameObject.SetActive(false);
+        boxAnim.SetTrigger("Out");
 
         onFinishSequence?.Invoke();
     }
