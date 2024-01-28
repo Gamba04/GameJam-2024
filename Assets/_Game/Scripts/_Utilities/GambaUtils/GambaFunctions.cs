@@ -689,6 +689,8 @@ public static class GambaFunctions
         AssetDatabase.Refresh();
     }
 
+    public static void RestrictNegativeValues(ref float value) => value = Mathf.Max(value, 0);
+
     #endregion
 
 #endif

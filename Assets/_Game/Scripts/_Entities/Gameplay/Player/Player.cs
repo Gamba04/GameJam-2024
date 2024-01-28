@@ -53,17 +53,25 @@ public class Player : MonoBehaviour
     [ReadOnly, SerializeField]
     private bool hasCigaretteCooldown;
 
+    private int playerID;
+
     public event Action onCigarette;
 
     private float Friction => isGrounded ? groundFriction : airFriction;
 
+    public int PlayerID => playerID;
+
     #region Init
 
-    public void Init(int playerIndex)
+    public void Init(int playerID)
     {
+        this.playerID = playerID;
+
         InitEvents();
 
-        input.Init(playerIndex);
+        input.Init(playerID);
+
+        SetCigarette(false);
     }
 
     private void InitEvents()
@@ -252,16 +260,14 @@ public class Player : MonoBehaviour
 
     private void UpdateEditorFields()
     {
-        RestrictNegatives(ref cigaretteCooldown);
-        RestrictNegatives(ref speed);
-        RestrictNegatives(ref acceleration);
-        RestrictNegatives(ref groundFriction);
-        RestrictNegatives(ref airFriction);
-        RestrictNegatives(ref jump);
-        RestrictNegatives(ref frictionThreshold);
-        RestrictNegatives(ref knockback);
-
-        void RestrictNegatives(ref float value) => value = Mathf.Max(value, 0);
+        GambaFunctions.RestrictNegativeValues(ref cigaretteCooldown);
+        GambaFunctions.RestrictNegativeValues(ref speed);
+        GambaFunctions.RestrictNegativeValues(ref acceleration);
+        GambaFunctions.RestrictNegativeValues(ref groundFriction);
+        GambaFunctions.RestrictNegativeValues(ref airFriction);
+        GambaFunctions.RestrictNegativeValues(ref jump);
+        GambaFunctions.RestrictNegativeValues(ref frictionThreshold);
+        GambaFunctions.RestrictNegativeValues(ref knockback);
     }
 
 #endif
