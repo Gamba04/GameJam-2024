@@ -27,7 +27,7 @@ public class CharacterSelectionScrObj : ScriptableObject
 
     private void OnValidate()
     {
-        players.Resize(MAX_PLAYERS);
+        players.Resize(Mathf.Min(players.Count, MAX_PLAYERS));
         players.ForEach((player, index) => player.SetName($"Player {index + 1}"));
     }
 
